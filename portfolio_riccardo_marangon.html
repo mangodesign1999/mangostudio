@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riccardo Marangon — Visual Designer</title>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap">
+  <link rel="stylesheet" href="https://use.typekit.net/rzk3hcj.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #faf9f6;
+      --bg2: #f0efe9;
+      --text: #111110;
+      --text2: #555550;
+      --text3: #999990;
+      --border: rgba(17, 17, 16, 0.12);
+      --border2: rgba(17, 17, 16, 0.22);
+      --accent: #b8d4f0;
+      --nav-bg: rgba(250, 249, 246, 0.75);
+    }
+
+    .dark-mode {
+      --bg: #111110;
+      --bg2: #1c1c1a;
+      --text: #faf9f6;
+      --text2: #aaa9a0;
+      --text3: #666660;
+      --border: rgba(250, 249, 246, 0.1);
+      --border2: rgba(250, 249, 246, 0.2);
+      --accent: #1a3a5c;
+      --nav-bg: rgba(17, 17, 16, 0.75);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background 0.3s;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .nav-name {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 48px;
+    }
+
+    .nav-links a {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links a::before,
+    .nav-links a::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .nav-links a::before {
+      top: 0;
+      color: var(--text2);
+      transform: translateY(0);
+    }
+
+    .nav-links a::after {
+      top: 100%;
+      color: var(--text);
+      transform: translateY(0);
+    }
+
+    .nav-links a:hover::before {
+      transform: translateY(-100%);
+    }
+
+    .nav-links a:hover::after {
+      transform: translateY(-100%);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-contact-btn {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border: 0.5px solid var(--border2);
+      padding: 9px 20px;
+      border-radius: 100px;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .nav-contact-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* ── DARK MODE PALLINO ── */
+    .dm-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 1px solid var(--border2);
+      position: relative;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+    }
+
+    .dm-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: #111110;
+    }
+
+    .dm-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: #faf9f6;
+    }
+
+    .dark-mode .dm-btn {
+      transform: rotate(180deg);
+    }
+
+    .dark-mode .dm-btn::before {
+      background: #111110;
+    }
+
+    .dark-mode .dm-btn::after {
+      background: #faf9f6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 32px;
+      padding-top: 58px;
+    }
+
+    .hero-title-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      padding: 48px 0 32px;
+    }
+
+    .hero-line {
+      font-family: "altesse-std-24pt", serif;
+      font-size: clamp(60px, 12vw, 180px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--text);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 1.2vw, 18px);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-top: 20px;
+    }
+
+    .hero-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      align-items: center;
+      padding: 18px 0;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .hf-item {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .hf-item.c {
+      text-align: center;
+    }
+
+    .hf-item.r {
+      text-align: right;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 88px 32px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      align-items: baseline;
+      margin-bottom: 56px;
+    }
+
+    .s-label {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .s-num {
+      font-size: 11px;
+      color: var(--text3);
+      text-align: right;
+      grid-column: 4;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 80px;
+    }
+
+    .about-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.2fr;
+      gap: 60px;
+    }
+
+    @media(max-width:768px) {
+      .about-details-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    .about-intro {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .about-img {
+      width: 320px;
+      height: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .about-text {
+      font-size: clamp(24px, 3.2vw, 44px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+      max-width: 100%;
+      text-align: left;
+    }
+
+    .word {
+      display: inline-block;
+      opacity: 0.15;
+      transition: opacity 0.4s ease;
+      margin-right: 0.15em;
+    }
+
+    .word.visible {
+      opacity: 1;
+    }
+
+    .accent-font {
+      font-family: "altesse-std-24pt", serif;
+      text-transform: none;
+      font-size: 1.2em;
+      line-height: 0;
+      vertical-align: baseline;
+      display: inline-block;
+    }
+
+    .about-text em {
+      font-style: italic;
+    }
+
+    .about-details {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .detail-title {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill {
+      font-size: clamp(18px, 1.8vw, 24px);
+      color: var(--text2);
+      font-weight: 300;
+      margin-right: 12px;
+    }
+
+    .exp-item {
+      margin-bottom: 18px;
+    }
+
+    .exp-role {
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 300;
+      color: var(--text);
+    }
+
+    .exp-where {
+      font-size: 16px;
+      color: var(--text2);
+      margin-top: 6px;
+      display: block;
+    }
+
+    .exp-when {
+      font-size: 16px;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .filter {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 0.5px solid var(--border2);
+      background: transparent;
+      padding: 7px 16px;
+      border-radius: 100px;
+      cursor: pointer;
+      color: var(--text2);
+      transition: all 0.18s;
+    }
+
+    .filter-btn:hover {
+      background: var(--bg2);
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .count {
+      font-size: 8px;
+      margin-left: 4px;
+      opacity: 0.6;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+    }
+
+    .card.hidden {
+      display: none;
+    }
+
+    /* Colored bg per card — si vede prima dell'hover */
+    .card-bg {
+      position: absolute;
+      inset: 0;
+      transition: filter 0.4s ease, transform 0.4s ease;
+      overflow: hidden;
+    }
+
+    .card-bg video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .card:hover .card-bg {
+      filter: blur(8px);
+      transform: scale(1.04);
+    }
+
+    /* overlay con info progetto */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 28px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .dark-mode .card-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .card:hover .card-overlay {
+      opacity: 1;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-num {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .card-view {
+      display: none;
+    }
+
+    .card-bottom {}
+
+    .card-name {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .card-type {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 6px;
+    }
+
+    /* Colori sfondo carte */
+    .card-c1 .card-bg {
+      background: #1a1a18;
+      color: rgba(255, 255, 255, 0.08);
+    }
+
+    .card-c2 .card-bg {
+      background: #2a2420;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .card-c3 .card-bg {
+      background: #1c2028;
+      color: rgba(255, 255, 255, 0.07);
+    }
+
+    .card-c4 .card-bg {
+      background: #221c1c;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .card-c5 .card-bg {
+      background: #1a2018;
+      color: rgba(255, 255, 255, 0.07);
+    }
+
+    .card-c6 .card-bg {
+      background: #201a28;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .card-c7 .card-bg {
+      background: #28201a;
+      color: rgba(255, 255, 255, 0.07);
+    }
+
+    .card-c8 .card-bg {
+      background: #1c2024;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .card-c9 .card-bg {
+      background: #201c1a;
+      color: rgba(255, 255, 255, 0.07);
+    }
+
+    .card-c10 .card-bg {
+      background: #18201c;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Light mode: carte più chiare */
+    body:not(.dark-mode) .card-c1 .card-bg {
+      background: #e8e4dc;
+      color: rgba(0, 0, 0, 0.08);
+    }
+
+    body:not(.dark-mode) .card-c2 .card-bg {
+      background: #e4dcd4;
+      color: rgba(0, 0, 0, 0.06);
+    }
+
+    body:not(.dark-mode) .card-c3 .card-bg {
+      background: #dce4e8;
+      color: rgba(0, 0, 0, 0.07);
+    }
+
+    body:not(.dark-mode) .card-c4 .card-bg {
+      background: #e0d8d8;
+      color: rgba(0, 0, 0, 0.06);
+    }
+
+    body:not(.dark-mode) .card-c5 .card-bg {
+      background: #dce4d8;
+      color: rgba(0, 0, 0, 0.07);
+    }
+
+    body:not(.dark-mode) .card-c6 .card-bg {
+      background: #dcd8e4;
+      color: rgba(0, 0, 0, 0.06);
+    }
+
+    body:not(.dark-mode) .card-c7 .card-bg {
+      background: #e4dcd4;
+      color: rgba(0, 0, 0, 0.07);
+    }
+
+    body:not(.dark-mode) .card-c8 .card-bg {
+      background: #d8dce4;
+      color: rgba(0, 0, 0, 0.06);
+    }
+
+    body:not(.dark-mode) .card-c9 .card-bg {
+      background: #e0dcd8;
+      color: rgba(0, 0, 0, 0.07);
+    }
+
+    body:not(.dark-mode) .card-c10 .card-bg {
+      background: #d8e0dc;
+      color: rgba(0, 0, 0, 0.06);
+    }
+
+    body:not(.dark-mode) .card-overlay {
+      background: rgba(17, 17, 16, 0.5);
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contact-heading {
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 500;
+      line-height: 0.97;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .contact-heading .hl {
+      display: inline;
+      background: var(--accent);
+      padding: 2px 6px;
+      margin-left: -6px;
+      transition: background 0.3s;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 0.5px solid var(--border);
+      text-decoration: none;
+      cursor: pointer;
+      transition: padding-left 0.18s;
+    }
+
+    .contact-link:hover {
+      padding-left: 10px;
+    }
+
+    .cl-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text2);
+    }
+
+    .cl-value {
+      font-size: clamp(16px, 1.5vw, 24px);
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 32px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-inner span,
+    .footer-inner a {
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-inner a:hover {
+      color: var(--text);
+    }
+
+    /* ── CV BUTTON ── */
+    .cv-btn {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border: 0.5px solid var(--border2);
+      padding: 10px 20px;
+      border-radius: 100px;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .cv-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    @media(max-width:900px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-role,
+      .nav-location {
+        display: none;
+      }
+
+      .hero-footer {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hf-item.c {
+        display: none;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .about-intro {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .about-img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .s-num {
+        grid-column: 2;
+      }
+
+      footer {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer span:nth-child(2),
+      footer span:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media(max-width:480px) {
+
+      .hero,
+      .section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      nav .nav-inner,
+      footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.2, 0.65, 0.35, 1), transform 1s cubic-bezier(0.2, 0.65, 0.35, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    .project-cursor {
+      position: fixed;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      border: 0.5px solid rgba(255, 255, 255, 0.5);
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.65, 0.35, 1);
+      white-space: nowrap;
+    }
+
+    .project-cursor.active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* ── EMOJI BURST ── */
+    .emoji-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 24px;
+      user-select: none;
+      animation: burst 0.8s cubic-bezier(0.1, 0.8, 0.4, 1) forwards;
+    }
+
+    @keyframes burst {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--tr));
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-name" href="#">Riccardo Marangon</a>
+      <div class="nav-center">
+        <div class="nav-links">
+          <a href="#projects" onclick="scrollTo('projects')" data-text="Projects">Projects</a>
+          <a href="#about" onclick="scrollTo('about')" data-text="About">About</a>
+          <a href="#skills" onclick="scrollTo('skills')" data-text="Skills">Skills</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <a class="nav-contact-btn" href="mailto:rmarangon.design@gmail.com">Contact</a>
+        <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero reveal">
+    <div class="hero-title-wrap">
+      <h1 class="hero-line reveal">Riccardo Marangon</h1>
+      <p class="hero-sub reveal">Visual designer from Italy</p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section reveal" id="projects">
+    <div class="section-header">
+      <span class="s-label">Selected Work</span>
+      <span class="s-num">01</span>
+    </div>
+    <div class="filter">
+      <button class="filter-btn active" onclick="filterProjects('all',this)">All <sup class="count">0</sup></button>
+      <button class="filter-btn" onclick="filterProjects('visual-identity',this)">Visual Identity <sup
+          class="count">0</sup></button>
+      <button class="filter-btn" onclick="filterProjects('printing',this)">Printing <sup class="count">0</sup></button>
+      <button class="filter-btn" onclick="filterProjects('motion',this)">Motion <sup class="count">0</sup></button>
+    </div>
+
+    <div class="cards-grid" id="cards-grid">
+
+      <div class="card card-c1 reveal" data-cat="visual-identity"
+        onclick="window.location.href='Pagine%20progetto/noch_caffe.html'">
+        <div class="card-bg"
+          style="background-image: url('Noch%20Caff%C3%A8/Free_Menu_Mockup_2.png'); background-size: cover; background-position: center;">
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">01</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Noch Caffè</div>
+            <div class="card-type">Visual Identity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-c2 reveal" data-cat="visual-identity"
+        onclick="window.location.href='Pagine%20progetto/misematch.html'">
+        <div class="card-bg"
+          style="background-image: url('Misematch/WEBP/logo%20mockup.webp'); background-size: cover; background-position: center;">
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">02</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Misematch</div>
+            <div class="card-type">Visual Identity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-c3 reveal" data-cat="visual-identity"
+        onclick="window.location.href='Pagine%20progetto/zephyn.html'">
+        <div class="card-bg"
+          style="background-image: url('Zephyn/WEBP/Office%20art.webp'); background-size: cover; background-position: center;">
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">03</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Zephyn</div>
+            <div class="card-type">Visual Identity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-c4 reveal" data-cat="visual-identity"
+        onclick="window.location.href='Pagine%20progetto/cajiga.html'">
+        <div class="card-bg"
+          style="background-image: url('Cajiga%20Inmuebles/WEBP/Free_Poster_Set_Mockup_1.webp'); background-size: cover; background-position: center;">
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">04</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Cajiga Inmuebles</div>
+            <div class="card-type">Visual Identity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-c5 reveal" data-cat="motion"
+        onclick="window.location.href='Pagine%20progetto/experiment_1.html'">
+        <div class="card-bg">
+          <video src="Motion/Composition%201.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">05</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Experiment #1</div>
+            <div class="card-type">Motion Design</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-c6 reveal" data-cat="motion" onclick="window.location.href='Pagine%20progetto/mad.html'">
+        <div class="card-bg">
+          <video src="MAD/Citron_Gatti_Marangon_Trailer.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">06</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">MAD Museum</div>
+            <div class="card-type">Motion Design</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-c7 reveal" data-cat="printing"
+        onclick="window.location.href='Pagine%20progetto/redbox_series.html'">
+        <div class="card-bg"
+          style="background-image: url('Diversitech%20pack/WEBP/Packaging%20Redbox%201.webp'); background-size: cover; background-position: center;">
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">07</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Redbox Series</div>
+            <div class="card-type">Printing</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section reveal" id="about">
+    <div class="section-header">
+      <span class="s-label">About</span>
+      <span class="s-num">02</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-intro">
+        <img class="about-img" src="Francobollo.png" alt="Riccardo Marangon">
+        <div class="about-text">
+          My name is <span class="accent-font">Riccardo Marangon</span> I am a designer from <span
+            class="accent-font">Italy</span>, where landscape and culture shape my visual language; I translate ideas
+          into clear, expressive visuals, with a particular strength in building <span
+            class="accent-font">identities</span> and crafting communication that feels both <span
+            class="accent-font">intentional</span> and <span class="accent-font">human</span>.
+          <br><br>
+          <a class="cv-btn" href="Riccardo_Marangon_CV_2026.pdf" download>Download CV ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS & TOOLS -->
+  <section class="section reveal" id="skills">
+    <div class="section-header">
+      <span class="s-label">Skills & Tools</span>
+      <span class="s-num">03</span>
+    </div>
+    <div class="about-details-grid">
+      <div>
+        <div class="detail-title">Tools</div>
+        <div class="skills-list">
+          <span class="skill">Illustrator</span><span class="skill">Photoshop</span>
+          <span class="skill">InDesign</span><span class="skill">Figma</span>
+          <span class="skill">After Effects</span><span class="skill">Blender</span>
+          <span class="skill">Premiere</span><span class="skill">Lightroom</span>
+        </div>
+      </div>
+      <div>
+        <div class="detail-title">Recent jobs</div>
+        <div class="exp-item">
+          <div class="exp-role">Visual Designer — Freelance</div>
+          <div class="exp-when">2026 — present</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Graphic Designer · Diversitech Europe</div>
+          <div class="exp-when">Jan 2025 — Jun 2025</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Graphic Designer · Antal</div>
+          <div class="exp-when">Jan 2024 — Jul 2024</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Graphic Designer Internship · Advertendo</div>
+          <div class="exp-when">Apr 2022 — Jun 2022</div>
+        </div>
+      </div>
+      <div>
+        <div class="detail-title">Education</div>
+        <div class="exp-item">
+          <div class="exp-role">Iuav University of Venice, Italy</div>
+          <div class="exp-where">MA / Visual Design</div>
+          <div class="exp-when">Grade 107/110</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-role">Iuav University of Venice, Italy</div>
+          <div class="exp-where">BA / Product & Visual Design</div>
+          <div class="exp-when">Grade 101/110</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section reveal" id="contact">
+    <div class="section-header">
+      <span class="s-label">Contact</span>
+      <span class="s-num">04</span>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-heading">
+        Let's work<br>together.
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:rmarangon.design@gmail.com">
+          <span class="cl-label">Email</span>
+          <span class="cl-value">rmarangon.design@gmail.com</span>
+        </a>
+        <a class="contact-link" href="tel:+393407973525">
+          <span class="cl-label">Phone</span>
+          <span class="cl-value">+39 340 797 3525</span>
+        </a>
+        <div class="contact-link">
+          <span class="cl-label">Location</span>
+          <span class="cl-value">Padua, Italy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span>Designed and developed by Riccardo Marangon</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/in/riccardo-marangon-07b137194/" target="_blank">Linkedin</a>
+        <a href="https://www.instagram.com/mangografik/" target="_blank">Instagram</a>
+        <span>© 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle('dark-mode');
+    }
+    function scrollTo(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = 80;
+        const target = el.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: target, behavior: 'smooth' });
+      }
+    }
+    function filterProjects(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.card').forEach(p => {
+        p.classList.toggle('hidden', cat !== 'all' && p.dataset.cat !== cat);
+      });
+    }
+
+    // Reveal on scroll logic
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // Una volta animato, smetti di osservare
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Count projects for filters
+      const cards = document.querySelectorAll('.card');
+      const counts = {
+        all: cards.length,
+        'visual-identity': 0,
+        'printing': 0,
+        'motion': 0
+      };
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-cat');
+        if (counts[cat] !== undefined) counts[cat]++;
+      });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const onclick = btn.getAttribute('onclick');
+        const match = onclick.match(/'([^']+)'/);
+        if (match) {
+          const cat = match[1];
+          const countSpan = btn.querySelector('.count');
+          if (countSpan) countSpan.innerText = counts[cat];
+        }
+      });
+
+      // Word animation for About section
+      const aboutText = document.querySelector('.about-text');
+      if (aboutText) {
+        const text = aboutText.innerText;
+        const words = text.split(' ');
+        aboutText.innerHTML = '';
+
+        // We need to handle the accent-font words specifically if we want to keep them.
+        // To keep it simple and preserve the exact look, I'll use a slightly different approach:
+        // I'll wrap existing elements and text nodes.
+
+        const nodes = Array.from(aboutText.childNodes);
+        // Actually, splitting by word while preserving tags is complex.
+        // Let's use a simpler approach: the user wants the WHOLE text to animate word by word.
+        // I will redefine the innerHTML with spans for every word.
+
+        const wordsArray = [
+          "My", "name", "is", "<span class='accent-font'>Riccardo Marangon</span>",
+          "I", "am", "a", "designer", "from", "<span class='accent-font'>Italy</span>,",
+          "where", "landscape", "and", "culture", "shape", "my", "visual", "language;",
+          "I", "translate", "ideas", "into", "clear,", "expressive", "visuals,",
+          "with", "a", "particular", "strength", "in", "building",
+          "<span class='accent-font'>identities</span>", "and", "crafting",
+          "communication", "that", "feels", "both", "<span class='accent-font'>intentional</span>",
+          "and", "<span class='accent-font'>human</span>."
+        ];
+
+        aboutText.innerHTML = wordsArray.map(w => `<span class="word">${w}</span>`).join(' ') +
+          '<br><br><a class="cv-btn" href="Riccardo_Marangon_CV_2026.pdf" download>Download CV ↓</a>';
+
+        const wordSpans = aboutText.querySelectorAll('.word');
+        const wordObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        wordSpans.forEach((span, i) => {
+          span.style.transitionDelay = `${i * 30}ms`;
+          wordObserver.observe(span);
+        });
+      }
+
+      // Custom Cursor for projects
+      const cursor = document.createElement('div');
+      cursor.className = 'project-cursor';
+      cursor.innerHTML = 'View project ↗';
+      document.body.appendChild(cursor);
+
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        card.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+      });
+
+      // Emoji Burst on Click
+      const emojis = ['✨', '🎨', '🚀', '🌈', '⚡️', '💎', '🔥', '⭐️'];
+      document.addEventListener('mousedown', (e) => {
+        for (let i = 0; i < 6; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'emoji-particle';
+          particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+          
+          const angle = (Math.random() * Math.PI * 2);
+          const velocity = 50 + Math.random() * 100;
+          const tx = Math.cos(angle) * velocity + 'px';
+          const ty = Math.sin(angle) * velocity + 'px';
+          const tr = (Math.random() - 0.5) * 360 + 'deg';
+          
+          particle.style.setProperty('--tx', tx);
+          particle.style.setProperty('--ty', ty);
+          particle.style.setProperty('--tr', tr);
+          
+          particle.style.left = e.clientX + 'px';
+          particle.style.top = e.clientY + 'px';
+          
+          document.body.appendChild(particle);
+          
+          setTimeout(() => {
+            particle.remove();
+          }, 800);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redbox Series — Riccardo Marangon</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg:#faf9f6;
+  --bg2:#f0efe9;
+  --text:#111110;
+  --text2:#555550;
+  --text3:#999990;
+  --border:rgba(17,17,16,0.12);
+  --border2:rgba(17,17,16,0.22);
+  --accent:#b8d4f0;
+  --nav-bg:rgba(250,249,246,0.75);
+}
+.dark-mode{
+  --bg:#111110;
+  --bg2:#1c1c1a;
+  --text:#faf9f6;
+  --text2:#aaa9a0;
+  --text3:#666660;
+  --border:rgba(250,249,246,0.1);
+  --border2:rgba(250,249,246,0.2);
+  --accent:#1a3a5c;
+  --nav-bg:rgba(17,17,16,0.75);
+}
+
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;font-size:12px;
+  color:var(--text);background:var(--bg);
+  transition:background 0.3s,color 0.3s;
+  line-height:1.7;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  transition:background 0.3s;
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 32px;
+  border-bottom:0.5px solid var(--border);
+}
+.nav-name{
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  font-weight:400;color:var(--text);text-decoration:none;
+}
+.nav-center{
+  position:absolute;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:24px;
+}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{
+  position:relative;display:inline-block;overflow:hidden;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:transparent;text-decoration:none;
+}
+.nav-links a::before, .nav-links a::after {
+  content:attr(data-text);position:absolute;left:0;
+  width:100%;height:100%;display:flex;align-items:center;
+  transition:transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.nav-links a::before {
+  top:0;color:var(--text2);transform:translateY(0);
+}
+.nav-links a::after {
+  top:100%;color:var(--text);transform:translateY(0);
+}
+.nav-links a:hover::before { transform:translateY(-100%); }
+.nav-links a:hover::after { transform:translateY(-100%); }
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-contact-btn{
+  font-family:'Satoshi',sans-serif;
+  font-size:10px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text);text-decoration:none;
+  border:0.5px solid var(--border2);
+  padding:7px 16px;border-radius:100px;
+  transition:background 0.18s,color 0.18s;
+}
+.nav-contact-btn:hover{background:var(--text);color:var(--bg);}
+
+/* ── DARK MODE PALLINO ── */
+.dm-btn{
+  width:20px;height:20px;border-radius:50%;
+  cursor:pointer;flex-shrink:0;
+  overflow:hidden;
+  border:1px solid var(--border2);
+  position:relative;
+  transition:transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+}
+.dm-btn::before{
+  content:'';
+  position:absolute;top:0;left:0;
+  width:50%;height:100%;
+  background:#111110;
+}
+.dm-btn::after{
+  content:'';
+  position:absolute;top:0;right:0;
+  width:50%;height:100%;
+  background:#faf9f6;
+}
+.dark-mode .dm-btn{ transform:rotate(180deg); }
+.dark-mode .dm-btn::before{background:#111110;}
+.dark-mode .dm-btn::after{background:#faf9f6;}
+
+.project-hero {
+  padding: 160px 32px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: baseline;
+}
+.project-title {
+  font-size: clamp(40px, 6vw, 90px);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.03em;
+  line-height: 0.96;
+}
+.project-meta {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-top: 16px;
+}
+.project-description {
+  max-width: 500px;
+  margin: 0;
+  text-align: left;
+}
+.project-description h3 {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+.project-description p {
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.6;
+  color: var(--text2);
+  font-weight: 300;
+}
+.project-gallery {
+  padding: 0 32px 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.project-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 0.5px solid var(--border);
+  background: var(--bg2);
+}
+.img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media(max-width: 900px){
+  .img-grid-2 { grid-template-columns: 1fr; }
+  .project-hero { grid-template-columns: 1fr; gap: 40px; }
+}
+
+footer{
+  padding:20px 32px;
+  border-top:0.5px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
+  align-items:center;
+}
+footer span{font-size:10px;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;}
+footer span:last-child{text-align:right;}
+
+@media(max-width:768px){
+  .nav-inner{grid-template-columns:1fr 1fr;}
+  footer{grid-template-columns:1fr 1fr;}
+  footer span:nth-child(2),footer span:nth-child(3){display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="../portfolio_riccardo_marangon.html">Riccardo Marangon</a>
+    <div class="nav-center">
+      <div class="nav-links">
+        <a href="../portfolio_riccardo_marangon.html" data-text="← Back to Work">← Back to Work</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a class="nav-contact-btn" href="mailto:rmarangon.design@gmail.com">Contact</a>
+      <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+    </div>
+  </div>
+</nav>
+
+<section class="project-hero">
+  <div>
+    <div class="project-title">Redbox Series</div>
+    <div class="project-meta">Printing & Packaging</div>
+  </div>
+  <div class="project-description">
+    <h3>About the project</h3>
+    <p>
+      The Redbox Series represents a study in packaging design, focusing on structural integrity and visual impact. Using a bold red palette and minimalist typography, the series aims to create a recognizable and premium shelf presence while ensuring practical functionality for shipping and storage.
+    </p>
+  </div>
+</section>
+
+<section class="project-gallery">
+  <img src="../Diversitech%20pack/WEBP/Packaging%20Redbox%201.webp" alt="Redbox Packaging 1">
+  
+  <div class="img-grid-2">
+    <img src="../Diversitech%20pack/WEBP/Packaging%20Redbox%202.webp" alt="Redbox Packaging 2">
+    <img src="../Diversitech%20pack/WEBP/Packaging%20Redbox%203.webp" alt="Redbox Packaging 3">
+  </div>
+</section>
+
+<footer>
+  <span>Riccardo Marangon</span>
+  <span>Visual Designer</span>
+  <span>Padova, IT</span>
+  <span>© 2026</span>
+</footer>
+
+<script>
+function toggleDark(){
+  document.body.classList.toggle('dark-mode');
+}
+</script>
+</body>
+</html>
