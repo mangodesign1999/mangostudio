@@ -7,6 +7,7 @@
   <title>Riccardo Marangon — Visual Designer</title>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap">
   <link rel="stylesheet" href="https://use.typekit.net/rzk3hcj.css">
+  <link rel="icon" type="image/svg+xml" href="Favicon/512x512.svg">
   <style>
     * {
       box-sizing: border-box;
@@ -44,7 +45,7 @@
 
     body {
       font-family: 'Satoshi', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 12px;
       color: var(--text);
       background: var(--bg);
@@ -313,7 +314,7 @@
 
     .hero-sub {
       font-size: clamp(14px, 1.2vw, 18px);
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--text3);
@@ -397,16 +398,27 @@
     }
 
     .about-img {
-      width: 320px;
+      position: fixed;
+      width: 300px;
       height: auto;
       object-fit: contain;
-      flex-shrink: 0;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 2000;
+      border-radius: 12px;
+      transform: translate(-50%, -50%) scale(0.8);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.65, 0.35, 1);
+    }
+
+    .about-img.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
     }
 
     .about-text {
-      font-size: clamp(24px, 3.2vw, 44px);
-      font-weight: 300;
-      line-height: 1.2;
+      font-size: clamp(32px, 4.5vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
       color: var(--text);
       max-width: 100%;
       text-align: left;
@@ -454,14 +466,24 @@
     .skills-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 10px;
     }
 
     .skill {
-      font-size: clamp(18px, 1.8vw, 24px);
+      font-size: 14px;
       color: var(--text2);
-      font-weight: 300;
-      margin-right: 12px;
+      font-weight: 400;
+      border: 0.5px solid var(--border2);
+      padding: 8px 20px;
+      border-radius: 100px;
+      background: var(--bg2);
+      transition: background 0.3s, color 0.3s;
+      display: inline-block;
+    }
+
+    .skill:hover {
+      background: var(--text);
+      color: var(--bg);
     }
 
     .exp-item {
@@ -470,7 +492,7 @@
 
     .exp-role {
       font-size: clamp(18px, 1.8vw, 24px);
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text);
     }
 
@@ -500,7 +522,7 @@
     .filter-btn {
       font-family: 'Satoshi', sans-serif;
       font-size: 10px;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       border: 0.5px solid var(--border2);
@@ -567,9 +589,11 @@
       pointer-events: none;
     }
 
-    .card:hover .card-bg {
-      filter: blur(8px);
-      transform: scale(1.04);
+    @media (hover: hover) {
+      .card:hover .card-bg {
+        filter: blur(8px);
+        transform: scale(1.04);
+      }
     }
 
     /* overlay con info progetto */
@@ -589,8 +613,10 @@
       background: rgba(0, 0, 0, 0.5);
     }
 
-    .card:hover .card-overlay {
-      opacity: 1;
+    @media (hover: hover) {
+      .card:hover .card-overlay {
+        opacity: 1;
+      }
     }
 
     .card-top {
@@ -990,6 +1016,12 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
+    @media (max-width: 768px) {
+      .project-cursor {
+        display: none !important;
+      }
+    }
+
     /* ── EMOJI BURST ── */
     .emoji-particle {
       position: fixed;
@@ -1005,6 +1037,7 @@
         transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
         opacity: 1;
       }
+
       100% {
         transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--tr));
         opacity: 0;
@@ -1020,8 +1053,8 @@
       <a class="nav-name" href="#">Riccardo Marangon</a>
       <div class="nav-center">
         <div class="nav-links">
-          <a href="#projects" onclick="scrollTo('projects')" data-text="Projects">Projects</a>
           <a href="#about" onclick="scrollTo('about')" data-text="About">About</a>
+          <a href="#projects" onclick="scrollTo('projects')" data-text="Projects">Projects</a>
           <a href="#skills" onclick="scrollTo('skills')" data-text="Skills">Skills</a>
         </div>
       </div>
@@ -1039,8 +1072,8 @@
   <!-- MOBILE NAV OVERLAY -->
   <div class="mobile-nav" id="mobileNav">
     <div class="close-mobile" onclick="toggleMenu()">✕</div>
-    <a href="#projects" onclick="toggleMenu(); scrollTo('projects')">Projects</a>
     <a href="#about" onclick="toggleMenu(); scrollTo('about')">About</a>
+    <a href="#projects" onclick="toggleMenu(); scrollTo('projects')">Projects</a>
     <a href="#skills" onclick="toggleMenu(); scrollTo('skills')">Skills</a>
     <a href="mailto:rmarangon.design@gmail.com" style="font-size: 16px; margin-top: 20px; opacity: 0.6;">Contact</a>
   </div>
@@ -1053,11 +1086,33 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
+  <section class="section reveal" id="about">
+    <div class="section-header">
+      <span class="s-label">About</span>
+      <span class="s-num">01</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-intro">
+        <img id="hoverImg" class="about-img" src="Francobollo.png" alt="Riccardo Marangon">
+        <div class="about-text">
+          My name is <span class="accent-font hover-trigger">Riccardo Marangon</span> I am a designer from <span
+            class="accent-font">Italy</span>, where landscape and culture shape my visual language; I translate ideas
+          into clear, expressive visuals, with a particular strength in building <span
+            class="accent-font">identities</span> and crafting communication that feels both <span
+            class="accent-font">intentional</span> and <span class="accent-font">human</span>.
+          <br><br>
+          <a class="cv-btn" href="CV/Riccardo_Marangon_CV_2026.pdf" download>Download CV ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PROJECTS -->
   <section class="section reveal" id="projects">
     <div class="section-header">
       <span class="s-label">Selected Work</span>
-      <span class="s-num">01</span>
+      <span class="s-num">02</span>
     </div>
     <div class="filter">
       <button class="filter-btn active" onclick="filterProjects('all',this)">All <sup class="count">0</sup></button>
@@ -1183,28 +1238,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section reveal" id="about">
-    <div class="section-header">
-      <span class="s-label">About</span>
-      <span class="s-num">02</span>
-    </div>
-    <div class="about-grid">
-      <div class="about-intro">
-        <img class="about-img" src="Francobollo.png" alt="Riccardo Marangon">
-        <div class="about-text">
-          My name is <span class="accent-font">Riccardo Marangon</span> I am a designer from <span
-            class="accent-font">Italy</span>, where landscape and culture shape my visual language; I translate ideas
-          into clear, expressive visuals, with a particular strength in building <span
-            class="accent-font">identities</span> and crafting communication that feels both <span
-            class="accent-font">intentional</span> and <span class="accent-font">human</span>.
-          <br><br>
-          <a class="cv-btn" href="Riccardo_Marangon_CV_2026.pdf" download>Download CV ↓</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- SKILLS & TOOLS -->
   <section class="section reveal" id="skills">
     <div class="section-header">
@@ -1218,7 +1251,7 @@
           <span class="skill">Illustrator</span><span class="skill">Photoshop</span>
           <span class="skill">InDesign</span><span class="skill">Figma</span>
           <span class="skill">After Effects</span><span class="skill">Blender</span>
-          <span class="skill">Premiere</span><span class="skill">Lightroom</span>
+          <span class="skill">Premiere</span><span class="skill">Antigravity</span>
         </div>
       </div>
       <div>
@@ -1379,7 +1412,7 @@
         // I will redefine the innerHTML with spans for every word.
 
         const wordsArray = [
-          "My", "name", "is", "<span class='accent-font'>Riccardo Marangon</span>",
+          "My", "name", "is", "<span class='accent-font hover-trigger'>Riccardo Marangon</span>",
           "I", "am", "a", "designer", "from", "<span class='accent-font'>Italy</span>,",
           "where", "landscape", "and", "culture", "shape", "my", "visual", "language;",
           "I", "translate", "ideas", "into", "clear,", "expressive", "visuals,",
@@ -1390,7 +1423,7 @@
         ];
 
         aboutText.innerHTML = wordsArray.map(w => `<span class="word">${w}</span>`).join(' ') +
-          '<br><br><a class="cv-btn" href="Riccardo_Marangon_CV_2026.pdf" download>Download CV ↓</a>';
+          '<br><br><a class="cv-btn" href="CV/Riccardo_Marangon_CV_2026.pdf" download>Download CV ↓</a>';
 
         const wordSpans = aboutText.querySelectorAll('.word');
         const wordObserver = new IntersectionObserver((entries) => {
@@ -1405,6 +1438,21 @@
           span.style.transitionDelay = `${i * 30}ms`;
           wordObserver.observe(span);
         });
+
+        // Hover Image Logic
+        const hoverImg = document.getElementById('hoverImg');
+        const trigger = aboutText.querySelector('.hover-trigger');
+
+        if (trigger && hoverImg) {
+          trigger.addEventListener('mousemove', (e) => {
+            hoverImg.classList.add('visible');
+            hoverImg.style.left = e.clientX + 'px';
+            hoverImg.style.top = e.clientY + 'px';
+          });
+          trigger.addEventListener('mouseleave', () => {
+            hoverImg.classList.remove('visible');
+          });
+        }
       }
 
       // Custom Cursor for projects
@@ -1430,22 +1478,22 @@
           const particle = document.createElement('div');
           particle.className = 'emoji-particle';
           particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-          
+
           const angle = (Math.random() * Math.PI * 2);
           const velocity = 50 + Math.random() * 100;
           const tx = Math.cos(angle) * velocity + 'px';
           const ty = Math.sin(angle) * velocity + 'px';
           const tr = (Math.random() - 0.5) * 360 + 'deg';
-          
+
           particle.style.setProperty('--tx', tx);
           particle.style.setProperty('--ty', ty);
           particle.style.setProperty('--tr', tr);
-          
+
           particle.style.left = e.clientX + 'px';
           particle.style.top = e.clientY + 'px';
-          
+
           document.body.appendChild(particle);
-          
+
           setTimeout(() => {
             particle.remove();
           }, 800);
