@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Misematch — Riccardo Marangon</title>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap">
+<link rel="stylesheet" href="https://use.typekit.net/rzk3hcj.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 
@@ -38,7 +39,37 @@ body{
   color:var(--text);background:var(--bg);
   transition:background 0.3s,color 0.3s;
   line-height:1.7;
+
+  cursor: none; /* Hide default cursor */
 }
+
+a, button, .dm-btn, .card {
+  cursor: none !important;
+}
+
+/* Global Custom Cursor */
+.main-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--text);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.2, 0.65, 0.35, 1), 
+              height 0.3s cubic-bezier(0.2, 0.65, 0.35, 1), 
+              background 0.3s, opacity 0.3s;
+  mix-blend-mode: difference;
+}
+
+.main-cursor.active {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  mix-blend-mode: difference;
+}
+
 
 /* ── NAV ── */
 nav{
@@ -159,25 +190,52 @@ nav{
   font-weight: 300;
 }
 .project-gallery {
-  padding: 0 32px 88px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px 140px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 120px;
 }
 .project-gallery img {
-  width: 100%;
+  width: auto;
   height: auto;
-  border-radius: 10px;
+  max-width: 60%;
+  border-radius: 4px;
   border: 0.5px solid var(--border);
   background: var(--bg2);
+  transition: transform 0.6s cubic-bezier(0.2, 0.65, 0.35, 1), opacity 0.6s ease;
+  opacity: 0;
+  transform: translateY(40px);
 }
-.img-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+
+.project-gallery img.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Disordered logic */
+.project-gallery img:nth-child(1) { align-self: center; max-width: 80%; }
+.project-gallery img:nth-child(2) { align-self: flex-start; max-width: 50%; margin-left: 5%; }
+.project-gallery img:nth-child(3) { align-self: flex-end; max-width: 55%; margin-right: 8%; transform: translateY(-40px); }
+.project-gallery img:nth-child(4) { align-self: center; max-width: 75%; }
+.project-gallery img:nth-child(5) { align-self: flex-start; max-width: 45%; margin-left: 12%; }
+.project-gallery img:nth-child(6) { align-self: flex-end; max-width: 50%; margin-right: 5%; transform: translateY(-60px); }
+.project-gallery img:nth-child(7) { align-self: center; max-width: 85%; }
+.project-gallery img:nth-child(8) { align-self: flex-start; max-width: 55%; }
+.project-gallery img:nth-child(9) { align-self: flex-end; max-width: 60%; transform: translateY(-20px); }
+.project-gallery img:nth-child(10) { align-self: center; max-width: 100%; }
+
+@media(max-width: 768px) {
+  .project-gallery { gap: 60px; padding-bottom: 80px; }
+  .project-gallery img { 
+    max-width: 100% !important; 
+    align-self: center !important; 
+    margin: 0 !important; 
+    transform: none !important;
+  }
 }
 @media(max-width: 900px){
-  .img-grid-2 { grid-template-columns: 1fr; }
   .project-hero { grid-template-columns: 1fr; gap: 40px; }
 }
 
@@ -195,6 +253,176 @@ footer span:last-child{text-align:right;}
   footer{grid-template-columns:1fr 1fr;}
   footer span:nth-child(2),footer span:nth-child(3){display:none;}
 }
+
+/* ── CAROUSEL ── */
+.carousel-title-container {
+  padding: 100px 32px 20px;
+}
+.carousel-title {
+  font-family: "altesse-std-24pt", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(32px, 5vw, 64px);
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.card-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel-container {
+  width: 100%;
+  overflow-x: auto;
+  cursor: grab;
+  padding: 20px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+.carousel-container:active {
+  cursor: grabbing;
+}
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  padding: 0 32px;
+  will-change: transform;
+}
+.carousel-track .card {
+  flex: 0 0 450px;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+}
+@media(max-width: 768px) {
+  .carousel-track .card {
+    flex: 0 0 300px;
+  }
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+  transition: filter 0.4s ease, transform 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  user-select: none;
+  padding: 28px;
+  line-height: 0.9;
+  align-items: flex-start;
+}
+
+.card:hover .card-bg {
+  filter: blur(8px);
+  transform: scale(1.04);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 28px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(0,0,0,0.35);
+}
+
+.dark-mode .card-overlay {
+  background: rgba(0,0,0,0.5);
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-num {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+
+.card-view {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 0.5px solid rgba(255,255,255,0.5);
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+}
+
+.card-bottom {}
+
+.card-name {
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.card-type {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-top: 6px;
+}
+
+/* Card BG Colors */
+.card-c1 .card-bg { background: #1a1a18; color: rgba(255,255,255,0.08); }
+.card-c2 .card-bg { background: #2a2420; color: rgba(255,255,255,0.06); }
+.card-c3 .card-bg { background: #1c2028; color: rgba(255,255,255,0.07); }
+.card-c4 .card-bg { background: #221c1c; color: rgba(255,255,255,0.06); }
+.card-c5 .card-bg { background: #1a2018; color: rgba(255,255,255,0.07); }
+.card-c6 .card-bg { background: #201a28; color: rgba(255,255,255,0.06); }
+.card-c7 .card-bg { background: #28201a; color: rgba(255,255,255,0.07); }
+.card-c8 .card-bg { background: #1c2024; color: rgba(255,255,255,0.06); }
+.card-c9 .card-bg { background: #201c1a; color: rgba(255,255,255,0.07); }
+.card-c10 .card-bg { background: #18201c; color: rgba(255,255,255,0.06); }
+
+/* Light Mode Card BG Colors */
+body:not(.dark-mode) .card-c1 .card-bg { background: #e8e4dc; color: rgba(0,0,0,0.08); }
+body:not(.dark-mode) .card-c2 .card-bg { background: #e4dcd4; color: rgba(0,0,0,0.06); }
+body:not(.dark-mode) .card-c3 .card-bg { background: #dce4e8; color: rgba(0,0,0,0.07); }
+body:not(.dark-mode) .card-c4 .card-bg { background: #e0d8d8; color: rgba(0,0,0,0.06); }
+body:not(.dark-mode) .card-c5 .card-bg { background: #dce4d8; color: rgba(0,0,0,0.07); }
+body:not(.dark-mode) .card-c6 .card-bg { background: #dcd8e4; color: rgba(0,0,0,0.06); }
+body:not(.dark-mode) .card-c7 .card-bg { background: #e4dcd4; color: rgba(0,0,0,0.07); }
+body:not(.dark-mode) .card-c8 .card-bg { background: #d8dce4; color: rgba(0,0,0,0.06); }
+body:not(.dark-mode) .card-c9 .card-bg { background: #e0dcd8; color: rgba(0,0,0,0.07); }
+body:not(.dark-mode) .card-c10 .card-bg { background: #d8e0dc; color: rgba(0,0,0,0.06); }
+
+body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
 </style>
 </head>
 <body>
@@ -217,7 +445,7 @@ footer span:last-child{text-align:right;}
 <section class="project-hero">
   <div>
     <div class="project-title">Misematch</div>
-    <div class="project-meta">Visual Identity</div>
+    <div class="project-meta">Visual Identity · 2024</div>
   </div>
   <div class="project-description">
     <h3>About the project</h3>
@@ -229,16 +457,81 @@ footer span:last-child{text-align:right;}
 
 <section class="project-gallery">
   <img src="../Misematch/WEBP/Cartellone.webp" alt="Misematch Cartellone">
-  
-  <div class="img-grid-2">
-    <img src="../Misematch/WEBP/logo%20mockup.webp" alt="Misematch Logo Mockup">
-    <img src="../Misematch/Hanger.jpg" alt="Misematch Hanger">
-  </div>
-
+  <img src="../Misematch/WEBP/logo%20mockup.webp" alt="Misematch Logo Mockup">
+  <img src="../Misematch/Hanger.jpg" alt="Misematch Hanger">
   <img src="../Misematch/WEBP/paper-bag-mockup-with-shadow-overlay-v1-isometric.webp" alt="Misematch Paper Bag">
+  <img src="../Misematch/WEBP/Label.webp" alt="Misematch Label">
+</section>
 
-  <div class="img-grid-2">
-    <img src="../Misematch/WEBP/Label.webp" alt="Misematch Label">
+
+<!-- OTHER PROJECTS CAROUSEL -->
+<section class="section reveal" id="more-projects">
+  <div class="carousel-title-container reveal">
+    <h2 class="carousel-title">Discover other projects</h2>
+  </div>
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="card card-c1" onclick="window.location.href='noch_caffe.html'">
+        <div class="card-bg" style="background-image: url('../Noch%20Caff%C3%A8/Free_Menu_Mockup_2.webp'); background-size: cover; background-position: center;"></div>
+        <div class="card-overlay">
+          <div class="card-top"><span class="card-num">01</span></div>
+          <div class="card-bottom">
+            <div class="card-name">Noch Caffè</div>
+            <div class="card-type">Visual Identity · 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-c2" onclick="window.location.href='misematch.html'">
+        <div class="card-bg" style="background-image: url('../Misematch/WEBP/logo%20mockup.webp'); background-size: cover; background-position: center;"></div>
+        <div class="card-overlay">
+          <div class="card-top"><span class="card-num">02</span></div>
+          <div class="card-bottom">
+            <div class="card-name">Misematch</div>
+            <div class="card-type">Visual Identity · 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-c3" onclick="window.location.href='zephyn.html'">
+        <div class="card-bg" style="background-image: url('../Zephyn/WEBP/Office%20art.webp'); background-size: cover; background-position: center;"></div>
+        <div class="card-overlay">
+          <div class="card-top"><span class="card-num">03</span></div>
+          <div class="card-bottom">
+            <div class="card-name">Zephyn</div>
+            <div class="card-type">Visual Identity · 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-c4" onclick="window.location.href='cajiga.html'">
+        <div class="card-bg" style="background-image: url('../Cajiga%20Inmuebles/WEBP/Free_Poster_Set_Mockup_1.webp'); background-size: cover; background-position: center;"></div>
+        <div class="card-overlay">
+          <div class="card-top"><span class="card-num">04</span></div>
+          <div class="card-bottom">
+            <div class="card-name">Cajiga Inmuebles</div>
+            <div class="card-type">Visual Identity · 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-c5" onclick="window.location.href='experiment_1.html'">
+        <div class="card-bg"><video src="../Motion/Composition%201.mp4" autoplay muted loop playsinline></video></div>
+        <div class="card-overlay">
+          <div class="card-top"><span class="card-num">05</span></div>
+          <div class="card-bottom">
+            <div class="card-name">Particles</div>
+            <div class="card-type">Motion Design · 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-c6" onclick="window.location.href='mad.html'">
+        <div class="card-bg"><video src="../MAD/Citron_Gatti_Marangon_Trailer.mp4" autoplay muted loop playsinline></video></div>
+        <div class="card-overlay">
+          <div class="card-top"><span class="card-num">06</span></div>
+          <div class="card-bottom">
+            <div class="card-name">MAD Museum</div>
+            <div class="card-type">Motion Design · 2022</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -251,8 +544,92 @@ footer span:last-child{text-align:right;}
 
 <script>
 function toggleDark(){
-  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', isDark);
 }
+
+// Reveal on scroll logic
+
+
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
+  
+  // Observe elements for reveal animation
+  document.querySelectorAll('.project-gallery img, .project-gallery video, .reveal').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Carousel Drag Logic
+  const slider = document.querySelector('.carousel-container');
+  if (slider) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+    slider.addEventListener('mousemove', (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  }
+
+  // Global Custom Cursor
+  const mainCursor = document.createElement('div');
+  mainCursor.className = 'main-cursor';
+  document.body.appendChild(mainCursor);
+
+  document.addEventListener('mousemove', (e) => {
+    mainCursor.style.left = e.clientX + 'px';
+    mainCursor.style.top = e.clientY + 'px';
+  });
+
+  const updateInteractiveListeners = () => {
+    const interactiveElements = document.querySelectorAll('a, button, .dm-btn, .card');
+    interactiveElements.forEach(el => {
+      if (!el.dataset.cursorBound) {
+        el.addEventListener('mouseenter', () => mainCursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => mainCursor.classList.remove('active'));
+        el.dataset.cursorBound = "true";
+      }
+    });
+  };
+
+  updateInteractiveListeners();
+
+  document.addEventListener('mouseleave', () => mainCursor.style.opacity = '0');
+  document.addEventListener('mouseenter', () => mainCursor.style.opacity = '1');
+});
+
 </script>
 </body>
 </html>
