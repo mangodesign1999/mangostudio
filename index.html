@@ -86,6 +86,25 @@
       mix-blend-mode: difference;
     }
 
+    @media (pointer: coarse), (max-width: 768px) {
+      .main-cursor {
+        display: none !important;
+      }
+      body {
+        cursor: auto !important;
+      }
+      a,
+      button,
+      .dm-btn,
+      .hover-trigger,
+      .card,
+      .contact-link,
+      .filter-btn,
+      .cv-btn {
+        cursor: pointer !important;
+      }
+    }
+
     /* ── NAV ── */
     nav {
       position: fixed;
@@ -322,6 +341,8 @@
       justify-content: space-between;
       padding: 0 32px;
       padding-top: 58px;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero-title-wrap {
@@ -332,6 +353,8 @@
       text-align: center;
       flex: 1;
       padding: 48px 0 32px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-line {
@@ -352,6 +375,47 @@
       text-transform: uppercase;
       color: var(--text3);
       margin-top: 20px;
+    }
+
+    /* Interactive Stamp Trail Styles */
+    .hero-stamp {
+      position: absolute;
+      width: clamp(100px, 12vw, 150px);
+      aspect-ratio: 3/4;
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      padding: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      pointer-events: none;
+      z-index: 1;
+      animation: stampFade 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      transform-origin: center center;
+      border-radius: 4px;
+    }
+    
+    .hero-stamp img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+    
+    @keyframes stampFade {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6) rotate(var(--r));
+      }
+      15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(var(--r));
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95) rotate(var(--r)) translateY(20px);
+      }
     }
 
     .hero-footer {
@@ -988,13 +1052,28 @@
         grid-column: 2;
       }
 
-      footer {
-        grid-template-columns: 1fr 1fr;
+      .footer-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
       }
 
-      footer span:nth-child(2),
-      footer span:nth-child(3) {
-        display: none;
+      .footer-left {
+        order: 2;
+      }
+
+      .footer-right {
+        order: 1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .footer-right span {
+        width: 100%;
+        margin-top: 4px;
       }
     }
 
@@ -1080,7 +1159,7 @@
     <a href="#about" onclick="toggleMenu(); scrollTo('about')">About</a>
     <a href="#projects" onclick="toggleMenu(); scrollTo('projects')">Projects</a>
     <a href="#skills" onclick="toggleMenu(); scrollTo('skills')">Skills</a>
-    <a href="mailto:rmarangon.design@gmail.com" style="font-size: 16px; margin-top: 20px; opacity: 0.6;">Contact</a>
+    <a href="mailto:rmarangon.design@gmail.com">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -1237,6 +1316,23 @@
           </div>
         </div>
       </div>
+
+      <div class="card card-c10 reveal" data-cat="visual-identity"
+        onclick="window.location.href='Pagine%20progetto/nestify.html'">
+        <div class="card-bg" style="background: #18201c;">
+          [Placeholder until images are added]
+        </div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">08</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Nestify</div>
+            <div class="card-type">Visual Identity · 2026</div>
+          </div>
+        </div>
+      </div>
+
       <!-- TEMPORARILY COMMENTED OUT - Placeholder cards without images. Uncomment to restore.
       <div class="card card-c8 reveal" data-cat="printing"
         onclick="window.location.href='Pagine%20progetto/la_rotonda_e_quadrata.html'">
@@ -1266,22 +1362,6 @@
           <div class="card-bottom">
             <div class="card-name">Vademecum</div>
             <div class="card-type">Printing · 2025</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card card-c10 reveal" data-cat="visual-identity"
-        onclick="window.location.href='Pagine%20progetto/nestify.html'">
-        <div class="card-bg" style="background: #18201c;">
-          [Placeholder until images are added]
-        </div>
-        <div class="card-overlay">
-          <div class="card-top">
-            <span class="card-num">10</span>
-          </div>
-          <div class="card-bottom">
-            <div class="card-name">Nestify</div>
-            <div class="card-type">Visual Identity · 2026</div>
           </div>
         </div>
       </div>
@@ -1319,7 +1399,8 @@
           <span class="skill">Illustrator</span><span class="skill">Photoshop</span>
           <span class="skill">InDesign</span><span class="skill">Figma</span>
           <span class="skill">After Effects</span><span class="skill">Blender</span>
-          <span class="skill">Premiere Pro</span><span class="skill">Antigravity</span>
+          <span class="skill">Premiere Pro</span><span class="skill">WordPress</span>
+          <span class="skill">Antigravity</span>
         </div>
       </div>
       <div>
@@ -1399,6 +1480,7 @@
       <div class="footer-right">
         <a href="https://www.linkedin.com/in/riccardo-marangon-07b137194/" target="_blank">Linkedin</a>
         <a href="https://www.instagram.com/mangostudio.design/" target="_blank">Instagram</a>
+        <a href="privacy.html">Privacy</a>
         <span>© 2026</span>
       </div>
     </div>
@@ -1601,6 +1683,68 @@
           }, 800);
         }
       });
+
+      // Image Stamp Trail on Hero Section
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        const stampImages = [
+          'Noch%20Caff%C3%A8/Free_Menu_Mockup_2.webp',
+          'Misematch/WEBP/logo%20mockup.webp',
+          'Zephyn/WEBP/Office%20art.webp',
+          'Cajiga%20Inmuebles/WEBP/Free_Poster_Set_Mockup_1.webp',
+          'Diversitech%20pack/WEBP/Packaging%20Redbox%201.webp',
+          'Immagini%20Pop-up/Francobollo.png'
+        ];
+        
+        let lastX = 0;
+        let lastY = 0;
+        let imageIndex = 0;
+        const threshold = 90; // distance threshold in pixels
+        
+        hero.addEventListener('mousemove', (e) => {
+          // Disable on mobile/touch viewports
+          if (window.innerWidth <= 768 || ('ontouchstart' in window)) return;
+          
+          // Get mouse coordinates relative to hero container
+          const rect = hero.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+          
+          const distance = Math.hypot(mouseX - lastX, mouseY - lastY);
+          
+          if (distance > threshold) {
+            lastX = mouseX;
+            lastY = mouseY;
+            
+            // Create stamp element
+            const stamp = document.createElement('div');
+            stamp.className = 'hero-stamp';
+            
+            // Set random rotation
+            const rotation = (Math.random() * 24 - 12); // -12deg to +12deg
+            stamp.style.setProperty('--r', `${rotation}deg`);
+            
+            // Set position
+            stamp.style.left = `${mouseX}px`;
+            stamp.style.top = `${mouseY}px`;
+            
+            // Create image element
+            const img = document.createElement('img');
+            // Cycle through images
+            img.src = stampImages[imageIndex];
+            imageIndex = (imageIndex + 1) % stampImages.length;
+            img.alt = 'Portfolio Project Stamp';
+            
+            stamp.appendChild(img);
+            hero.appendChild(stamp);
+            
+            // Remove stamp after animation completes
+            setTimeout(() => {
+              stamp.remove();
+            }, 1200); // matches CSS animation duration
+          }
+        });
+      }
     });
   </script>
 </body>

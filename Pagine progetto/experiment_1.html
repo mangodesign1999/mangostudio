@@ -69,6 +69,18 @@ a, button, .dm-btn, .card {
   mix-blend-mode: difference;
 }
 
+@media (pointer: coarse), (max-width: 768px) {
+  .main-cursor {
+    display: none !important;
+  }
+  body {
+    cursor: auto !important;
+  }
+  a, button, .dm-btn, .card, .burger-btn, .close-mobile, .nav-links a {
+    cursor: pointer !important;
+  }
+}
+
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -81,12 +93,12 @@ nav{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:18px 32px;
+  padding:12px 32px;
   border-bottom:0.5px solid var(--border);
 }
 .nav-name{
-  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
-  font-weight:400;color:var(--text);text-decoration:none;
+  font-size:14px;letter-spacing:0.08em;text-transform:uppercase;
+  font-weight:500;color:var(--text);text-decoration:none;
 }
 .nav-center{
   position:absolute;left:50%;transform:translateX(-50%);
@@ -95,7 +107,7 @@ nav{
 .nav-links{display:flex;gap:24px;}
 .nav-links a{
   position:relative;display:inline-block;overflow:hidden;
-  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  font-size:14px;letter-spacing:0.08em;text-transform:uppercase;
   color:transparent;text-decoration:none;
 }
 .nav-links a::before, .nav-links a::after {
@@ -114,10 +126,10 @@ nav{
 .nav-right{display:flex;align-items:center;gap:16px;}
 .nav-contact-btn{
   font-family:'Satoshi',sans-serif;
-  font-size:10px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;
+  font-size:13px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;
   color:var(--text);text-decoration:none;
   border:0.5px solid var(--border2);
-  padding:7px 16px;border-radius:100px;
+  padding:9px 20px;border-radius:100px;
   transition:background 0.18s,color 0.18s;
 }
 .nav-contact-btn:hover{background:var(--text);color:var(--bg);}
@@ -146,12 +158,183 @@ nav{
 .dark-mode .dm-btn{ transform:rotate(180deg); }
 
 /* ── PROJECT HERO ── */
+
+/* Burger button styles */
+.burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1600;
+}
+.burger-line {
+  width: 100%;
+  height: 1.5px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+/* Mobile Overlay */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav.active {
+  opacity: 1;
+  visibility: visible;
+}
+.close-mobile {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text);
+}
+.mobile-nav a {
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.mobile-nav .dm-btn {
+  display: block !important;
+  border: 0.5px solid var(--border2);
+}
+/* Burger Open State */
+body.menu-open {
+  overflow: hidden;
+}
+body.menu-open .burger-btn {
+  background: var(--text);
+  border-color: var(--text);
+}
+body.menu-open .burger-line {
+  background: var(--bg);
+}
+body.menu-open .burger-line:nth-child(1) {
+  transform: translateY(2.75px) rotate(45deg);
+}
+body.menu-open .burger-line:nth-child(2) {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
+
+/* Burger button styles */
+.burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1600;
+}
+.burger-line {
+  width: 100%;
+  height: 1.5px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+/* Mobile Overlay */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav.active {
+  opacity: 1;
+  visibility: visible;
+}
+.close-mobile {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text);
+}
+.mobile-nav a {
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.mobile-nav .dm-btn {
+  display: block !important;
+  border: 0.5px solid var(--border2);
+}
+/* Burger Open State */
+body.menu-open {
+  overflow: hidden;
+}
+body.menu-open .burger-btn {
+  background: var(--text);
+  border-color: var(--text);
+}
+body.menu-open .burger-line {
+  background: var(--bg);
+}
+body.menu-open .burger-line:nth-child(1) {
+  transform: translateY(2.75px) rotate(45deg);
+}
+body.menu-open .burger-line:nth-child(2) {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
 .project-hero {
   padding: 160px 32px 100px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 .project-title {
   font-size: clamp(40px, 6vw, 90px);
@@ -186,6 +369,12 @@ nav{
   color: var(--text2);
   font-weight: 300;
 }
+@media(max-width: 768px) {
+  .project-description p {
+    font-size: 15px;
+    font-weight: 400;
+  }
+}
 .project-gallery {
   max-width: 1400px;
   margin: 0 auto;
@@ -215,6 +404,44 @@ nav{
 .project-gallery video:nth-child(1), .project-gallery img:nth-child(1) { align-self: center; max-width: 80%; }
 
 @media(max-width: 768px) {
+  .nav-inner {
+    padding: 10px 20px;
+  }
+  .nav-name {
+    display: none;
+  }
+  .nav-center {
+    position: static;
+    transform: none;
+  }
+  .nav-contact-btn {
+    display: none;
+  }
+  .dm-btn {
+    display: none;
+  }
+  .burger-btn {
+    display: flex;
+  }
+  .nav-inner {
+    padding: 10px 20px;
+  }
+  .nav-name {
+    display: none;
+  }
+  .nav-center {
+    position: static;
+    transform: none;
+  }
+  .nav-contact-btn {
+    display: none;
+  }
+  .dm-btn {
+    display: none;
+  }
+  .burger-btn {
+    display: flex;
+  }
   .project-gallery { gap: 60px; padding-bottom: 80px; }
   .project-gallery video, .project-gallery img { 
     max-width: 100% !important; 
@@ -246,7 +473,179 @@ footer{
 }
 
 @media(max-width: 900px){
-  .project-hero { grid-template-columns: 1fr; gap: 40px; }
+  
+/* Burger button styles */
+.burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1600;
+}
+.burger-line {
+  width: 100%;
+  height: 1.5px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+/* Mobile Overlay */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav.active {
+  opacity: 1;
+  visibility: visible;
+}
+.close-mobile {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text);
+}
+.mobile-nav a {
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.mobile-nav .dm-btn {
+  display: block !important;
+  border: 0.5px solid var(--border2);
+}
+/* Burger Open State */
+body.menu-open {
+  overflow: hidden;
+}
+body.menu-open .burger-btn {
+  background: var(--text);
+  border-color: var(--text);
+}
+body.menu-open .burger-line {
+  background: var(--bg);
+}
+body.menu-open .burger-line:nth-child(1) {
+  transform: translateY(2.75px) rotate(45deg);
+}
+body.menu-open .burger-line:nth-child(2) {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
+
+/* Burger button styles */
+.burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1600;
+}
+.burger-line {
+  width: 100%;
+  height: 1.5px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+/* Mobile Overlay */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav.active {
+  opacity: 1;
+  visibility: visible;
+}
+.close-mobile {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text);
+}
+.mobile-nav a {
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.mobile-nav .dm-btn {
+  display: block !important;
+  border: 0.5px solid var(--border2);
+}
+/* Burger Open State */
+body.menu-open {
+  overflow: hidden;
+}
+body.menu-open .burger-btn {
+  background: var(--text);
+  border-color: var(--text);
+}
+body.menu-open .burger-line {
+  background: var(--bg);
+}
+body.menu-open .burger-line:nth-child(1) {
+  transform: translateY(2.75px) rotate(45deg);
+}
+body.menu-open .burger-line:nth-child(2) {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
+.project-hero { grid-template-columns: 1fr; gap: 40px; }
 }
 
 /* ── CAROUSEL ── */
@@ -418,6 +817,44 @@ body:not(.dark-mode) .card-c9 .card-bg { background: #e0dcd8; color: rgba(0,0,0,
 body:not(.dark-mode) .card-c10 .card-bg { background: #d8e0dc; color: rgba(0,0,0,0.06); }
 
 body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
+/* Mobile Burger Menu Optimization */
+@media (max-width: 768px) {
+  .burger-btn {
+    display: flex !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    border: 0.5px solid var(--border2) !important;
+    background: var(--bg) !important;
+    cursor: pointer !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    z-index: 2000 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 0 !important;
+  }
+  .burger-line {
+    width: 18px !important;
+    height: 1.5px !important;
+    background: var(--text) !important;
+    transition: all 0.3s !important;
+  }
+  body.menu-open .burger-btn {
+    background: var(--text) !important;
+    border-color: var(--text) !important;
+  }
+  body.menu-open .burger-line {
+    background: var(--bg) !important;
+  }
+  body.menu-open .burger-line:nth-child(1) {
+    transform: translateY(2.75px) rotate(45deg) !important;
+  }
+  body.menu-open .burger-line:nth-child(2) {
+    transform: translateY(-2.75px) rotate(-45deg) !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -433,6 +870,10 @@ body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
     <div class="nav-right">
       <a class="nav-contact-btn" href="mailto:rmarangon.design@gmail.com">Contact</a>
       <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+      <button class="burger-btn" onclick="toggleMenu()" aria-label="Menu">
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+      </button>
     </div>
   </div>
 </nav>
@@ -545,6 +986,16 @@ function toggleDark(){
   localStorage.setItem('darkMode', isDark);
 }
 
+function toggleMenu() {
+  document.body.classList.toggle('menu-open');
+  document.getElementById('mobileNav').classList.toggle('active');
+}
+
+function toggleMenu() {
+  document.body.classList.toggle('menu-open');
+  document.getElementById('mobileNav').classList.toggle('active');
+}
+
 // Reveal on scroll logic
 
 
@@ -628,5 +1079,25 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="close-mobile" onclick="toggleMenu()">✕</div>
+  <a href="../index.html#about" onclick="toggleMenu()">About</a>
+  <a href="../index.html#projects" onclick="toggleMenu()">Projects</a>
+  <a href="../index.html#skills" onclick="toggleMenu()">Skills</a>
+  <a href="mailto:rmarangon.design@gmail.com">Contact</a>
+  <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+</div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="close-mobile" onclick="toggleMenu()">✕</div>
+  <a href="../index.html#about" onclick="toggleMenu()">About</a>
+  <a href="../index.html#projects" onclick="toggleMenu()">Projects</a>
+  <a href="../index.html#skills" onclick="toggleMenu()">Skills</a>
+  <a href="mailto:rmarangon.design@gmail.com">Contact</a>
+  <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+</div>
+
 </body>
 </html>

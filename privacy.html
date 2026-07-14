@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Riccardo Marangon</title>
+<meta name="description" content="Informativa sulla privacy del sito di Riccardo Marangon, Visual Designer.">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap">
+<link rel="stylesheet" href="https://use.typekit.net/rzk3hcj.css">
+<link rel="icon" type="image/svg+xml" href="Favicon/512x512.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg:#faf9f6;
+  --bg2:#f0efe9;
+  --text:#111110;
+  --text2:#555550;
+  --text3:#999990;
+  --border:rgba(17,17,16,0.12);
+  --border2:rgba(17,17,16,0.22);
+  --accent:#b8d4f0;
+  --nav-bg:rgba(250,249,246,0.75);
+}
+.dark-mode{
+  --bg:#111110;
+  --bg2:#1c1c1a;
+  --text:#faf9f6;
+  --text2:#aaa9a0;
+  --text3:#666660;
+  --border:rgba(250,249,246,0.1);
+  --border2:rgba(250,249,246,0.2);
+  --accent:#1a3a5c;
+  --nav-bg:rgba(17,17,16,0.75);
+}
+
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;font-size:12px;
+  color:var(--text);background:var(--bg);
+  transition:background 0.3s,color 0.3s;
+  line-height:1.7;
+  cursor: none;
+}
+
+a, button, .dm-btn, .card {
+  cursor: none !important;
+}
+
+/* Global Custom Cursor */
+.main-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--text);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.2, 0.65, 0.35, 1), 
+              height 0.3s cubic-bezier(0.2, 0.65, 0.35, 1), 
+              background 0.3s, opacity 0.3s;
+  mix-blend-mode: difference;
+}
+
+.main-cursor.active {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  mix-blend-mode: difference;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .main-cursor {
+    display: none !important;
+  }
+  body {
+    cursor: auto !important;
+  }
+  a, button, .dm-btn, .card {
+    cursor: pointer !important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  transition:background 0.3s;
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 32px;
+  border-bottom:0.5px solid var(--border);
+}
+.nav-name{
+  font-size:14px;font-weight:500;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--text);text-decoration:none;
+}
+.nav-center{display:flex;gap:32px;align-items:center;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{
+  font-size:14px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text3);text-decoration:none;
+  transition:color 0.18s;position:relative;
+}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-contact-btn{
+  font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text);text-decoration:none;
+  border:0.5px solid var(--border2);
+  padding:9px 20px;border-radius:100px;
+  transition:background 0.18s,color 0.18s;
+}
+.nav-contact-btn:hover{background:var(--text);color:var(--bg);}
+.dm-btn{
+  width:18px;height:18px;border-radius:50%;
+  border:0.5px solid var(--border2);cursor:pointer;
+  background:var(--text);transition:background 0.18s;
+}
+
+/* ── PRIVACY CONTENT ── */
+
+/* Burger button styles */
+.burger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1600;
+}
+.burger-line {
+  width: 100%;
+  height: 1.5px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+/* Mobile Overlay */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav.active {
+  opacity: 1;
+  visibility: visible;
+}
+.close-mobile {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 0.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text);
+}
+.mobile-nav a {
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.mobile-nav .dm-btn {
+  display: block !important;
+  border: 0.5px solid var(--border2);
+}
+/* Burger Open State */
+body.menu-open {
+  overflow: hidden;
+}
+body.menu-open .burger-btn {
+  background: var(--text);
+  border-color: var(--text);
+}
+body.menu-open .burger-line {
+  background: var(--bg);
+}
+body.menu-open .burger-line:nth-child(1) {
+  transform: translateY(2.75px) rotate(45deg);
+}
+body.menu-open .burger-line:nth-child(2) {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
+.privacy-hero {
+  padding: 160px 32px 60px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.privacy-title {
+  font-family: "altesse-std-24pt", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(32px, 5vw, 64px);
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.privacy-subtitle {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.privacy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 32px 140px;
+}
+
+.privacy-content h2 {
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 48px;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.privacy-content h2:first-child {
+  margin-top: 0;
+}
+
+.privacy-content p {
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.8;
+  color: var(--text2);
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.privacy-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.privacy-content ul li {
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.8;
+  color: var(--text2);
+  font-weight: 300;
+  padding-left: 16px;
+  position: relative;
+}
+
+.privacy-content ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--text3);
+}
+
+.privacy-content a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--border2);
+  transition: border-color 0.18s;
+}
+
+.privacy-content a:hover {
+  border-color: var(--text);
+}
+
+.privacy-divider {
+  width: 40px;
+  height: 0.5px;
+  background: var(--border);
+  margin: 48px 0;
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:40px 32px;
+  border-top:0.5px solid var(--border);
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+.footer-inner span,
+.footer-inner a{
+  font-size:11px;
+  color:var(--text3);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.footer-right{
+  display:flex;
+  gap:24px;
+  align-items:center;
+}
+.footer-inner a:hover{
+  color:var(--text);
+}
+
+@media(max-width:768px){
+  .nav-name {
+    display: none;
+  }
+  .nav-center {
+    position: static;
+    transform: none;
+  }
+  .nav-contact-btn {
+    display: none;
+  }
+  .dm-btn {
+    display: none;
+  }
+  .burger-btn {
+    display: flex;
+  }
+  .dm-btn {
+    display: none;
+  }
+  .burger-btn {
+    display: flex;
+  }
+  .privacy-hero{padding:120px 20px 40px;}
+  .privacy-content{padding:20px 20px 80px;}
+  .footer-inner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  .footer-left {
+    order: 2;
+  }
+  .footer-right {
+    order: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  .footer-right span {
+    width: 100%;
+    margin-top: 4px;
+  }
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.2, 0.65, 0.35, 1), transform 1s cubic-bezier(0.2, 0.65, 0.35, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Mobile Burger Menu Optimization */
+@media (max-width: 768px) {
+  .burger-btn {
+    display: flex !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    border: 0.5px solid var(--border2) !important;
+    background: var(--bg) !important;
+    cursor: pointer !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    z-index: 2000 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 0 !important;
+  }
+  .burger-line {
+    width: 18px !important;
+    height: 1.5px !important;
+    background: var(--text) !important;
+    transition: all 0.3s !important;
+  }
+  body.menu-open .burger-btn {
+    background: var(--text) !important;
+    border-color: var(--text) !important;
+  }
+  body.menu-open .burger-line {
+    background: var(--bg) !important;
+  }
+  body.menu-open .burger-line:nth-child(1) {
+    transform: translateY(2.75px) rotate(45deg) !important;
+  }
+  body.menu-open .burger-line:nth-child(2) {
+    transform: translateY(-2.75px) rotate(-45deg) !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="index.html">Riccardo Marangon</a>
+    <div class="nav-center">
+      <div class="nav-links">
+        <a href="index.html" data-text="← Back to Work">← Back to Work</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a class="nav-contact-btn" href="mailto:rmarangon.design@gmail.com">Contact</a>
+      <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+      <button class="burger-btn" onclick="toggleMenu()" aria-label="Menu">
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="privacy-hero reveal">
+  <h1 class="privacy-title">Privacy Policy</h1>
+  <p class="privacy-subtitle">Ultimo aggiornamento · 29 Maggio 2025</p>
+</section>
+
+<div class="privacy-content reveal">
+
+  <h2>1. Titolare del trattamento</h2>
+  <p>
+    Il titolare del trattamento dei dati è:<br>
+    <strong>Riccardo Marangon</strong><br>
+    Padova, Italia<br>
+    P. IVA 05763680286<br>
+    Email: <a href="mailto:rmarangon.design@gmail.com">rmarangon.design@gmail.com</a>
+  </p>
+
+  <div class="privacy-divider"></div>
+
+  <h2>2. Tipologia di dati raccolti</h2>
+  <p>
+    Questo sito web non raccoglie dati personali in modo automatico. I dati personali vengono trattati esclusivamente quando l'utente li fornisce volontariamente contattando il titolare tramite i recapiti presenti sul sito (email o telefono).
+  </p>
+  <p>I dati che possono essere forniti volontariamente includono:</p>
+  <ul>
+    <li>Nome e cognome</li>
+    <li>Indirizzo email</li>
+    <li>Numero di telefono</li>
+    <li>Qualsiasi altra informazione comunicata spontaneamente dall'utente</li>
+  </ul>
+
+  <div class="privacy-divider"></div>
+
+  <h2>3. Finalità del trattamento</h2>
+  <p>I dati personali forniti volontariamente dall'utente saranno utilizzati esclusivamente per le seguenti finalità:</p>
+  <ul>
+    <li>Rispondere alle richieste di contatto e informazioni</li>
+    <li>Gestire eventuali rapporti professionali e collaborazioni</li>
+    <li>Adempiere ad obblighi di legge o regolamentari</li>
+  </ul>
+
+  <div class="privacy-divider"></div>
+
+  <h2>4. Base giuridica del trattamento</h2>
+  <p>
+    Il trattamento dei dati personali si basa sul consenso dell'interessato, espresso nel momento in cui decide volontariamente di contattare il titolare, nonché sul legittimo interesse del titolare a rispondere alle richieste ricevute.
+  </p>
+
+  <div class="privacy-divider"></div>
+
+  <h2>5. Conservazione dei dati</h2>
+  <p>
+    I dati personali forniti dall'utente saranno conservati per il tempo strettamente necessario a soddisfare le finalità per cui sono stati raccolti, e comunque non oltre i termini previsti dalla normativa vigente. Al termine del periodo di conservazione, i dati saranno cancellati o resi anonimi.
+  </p>
+
+  <div class="privacy-divider"></div>
+
+  <h2>6. Cookie e tecnologie di tracciamento</h2>
+  <p>
+    Questo sito web <strong>non utilizza cookie</strong> di profilazione, tracciamento o analisi. L'unico dato memorizzato localmente nel browser dell'utente è la preferenza relativa alla modalità di visualizzazione (chiara/scura), gestita tramite <em>localStorage</em>, che non costituisce un dato personale e non viene trasmesso a terzi.
+  </p>
+
+  <div class="privacy-divider"></div>
+
+  <h2>7. Condivisione con terzi</h2>
+  <p>
+    I dati personali non saranno ceduti, venduti o condivisi con terze parti, ad eccezione dei casi previsti dalla legge o su richiesta delle autorità competenti.
+  </p>
+
+  <div class="privacy-divider"></div>
+
+  <h2>8. Diritti dell'utente</h2>
+  <p>
+    Ai sensi degli articoli 15-22 del Regolamento UE 2016/679 (GDPR), l'utente ha il diritto di:
+  </p>
+  <ul>
+    <li>Accedere ai propri dati personali</li>
+    <li>Richiedere la rettifica o l'aggiornamento dei dati</li>
+    <li>Richiedere la cancellazione dei dati (diritto all'oblio)</li>
+    <li>Limitare il trattamento dei dati</li>
+    <li>Opporsi al trattamento dei dati</li>
+    <li>Richiedere la portabilità dei dati</li>
+    <li>Revocare il consenso in qualsiasi momento</li>
+  </ul>
+  <p>
+    Per esercitare i propri diritti, l'utente può contattare il titolare all'indirizzo email: <a href="mailto:rmarangon.design@gmail.com">rmarangon.design@gmail.com</a>.
+  </p>
+  <p>
+    L'utente ha inoltre il diritto di presentare un reclamo all'Autorità Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank">www.garanteprivacy.it</a>).
+  </p>
+
+  <div class="privacy-divider"></div>
+
+  <h2>9. Modifiche alla presente informativa</h2>
+  <p>
+    Il titolare si riserva il diritto di modificare o aggiornare la presente informativa in qualsiasi momento. Le eventuali modifiche saranno pubblicate su questa pagina con indicazione della data di ultimo aggiornamento.
+  </p>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>Riccardo Marangon · Padua, Italy · P. IVA 05763680286</span>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.linkedin.com/in/riccardo-marangon-07b137194/" target="_blank">Linkedin</a>
+      <a href="https://www.instagram.com/mangostudio.design/" target="_blank">Instagram</a>
+      <a href="privacy.html">Privacy</a>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleDark(){
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', isDark);
+}
+
+function toggleMenu() {
+  document.body.classList.toggle('menu-open');
+  document.getElementById('mobileNav').classList.toggle('active');
+}
+
+function toggleMenu() {
+  document.body.classList.toggle('menu-open');
+  document.getElementById('mobileNav').classList.toggle('active');
+}
+
+// Reveal on scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Global Custom Cursor
+  const mainCursor = document.createElement('div');
+  mainCursor.className = 'main-cursor';
+  document.body.appendChild(mainCursor);
+
+  document.addEventListener('mousemove', (e) => {
+    mainCursor.style.left = e.clientX + 'px';
+    mainCursor.style.top = e.clientY + 'px';
+  });
+
+  const updateInteractiveListeners = () => {
+    const interactiveElements = document.querySelectorAll('a, button, .dm-btn');
+    interactiveElements.forEach(el => {
+      if (!el.dataset.cursorBound) {
+        el.addEventListener('mouseenter', () => mainCursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => mainCursor.classList.remove('active'));
+        el.dataset.cursorBound = "true";
+      }
+    });
+  };
+
+  updateInteractiveListeners();
+
+  document.addEventListener('mouseleave', () => mainCursor.style.opacity = '0');
+  document.addEventListener('mouseenter', () => mainCursor.style.opacity = '1');
+});
+</script>
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="close-mobile" onclick="toggleMenu()">✕</div>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+  <a href="index.html#projects" onclick="toggleMenu()">Projects</a>
+  <a href="index.html#skills" onclick="toggleMenu()">Skills</a>
+  <a href="mailto:rmarangon.design@gmail.com">Contact</a>
+  <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+</div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="close-mobile" onclick="toggleMenu()">✕</div>
+  <a href="index.html#about" onclick="toggleMenu()">About</a>
+  <a href="index.html#projects" onclick="toggleMenu()">Projects</a>
+  <a href="index.html#skills" onclick="toggleMenu()">Skills</a>
+  <a href="mailto:rmarangon.design@gmail.com">Contact</a>
+  <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
+</div>
+
+</body>
+</html>
