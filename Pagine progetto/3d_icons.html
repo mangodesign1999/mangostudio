@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nestify — Riccardo Marangon</title>
+<title>3D Icons — Riccardo Marangon</title>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap">
 <link rel="stylesheet" href="https://use.typekit.net/rzk3hcj.css">
 <style>
@@ -247,152 +247,78 @@ body.menu-open .burger-line:nth-child(2) {
   transform: translateY(-2.75px) rotate(-45deg);
 }
 
-
-/* Burger button styles */
-.burger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1600;
-}
-.burger-line {
-  width: 100%;
-  height: 1.5px;
-  background: var(--text);
-  transition: all 0.3s;
-}
-
-/* Mobile Overlay */
-.mobile-nav {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  z-index: 1500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
+/* ── REVEAL ANIMATION ── */
+.reveal {
   opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.mobile-nav.active {
+.reveal.active {
   opacity: 1;
-  visibility: visible;
-}
-.close-mobile {
-  position: absolute;
-  top: 18px;
-  right: 32px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 0.5px solid var(--border2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 20px;
-  color: var(--text);
-}
-.mobile-nav a {
-  font-size: 32px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-weight: 400;
-  color: var(--text);
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-.mobile-nav .dm-btn {
-  display: block !important;
-  border: 0.5px solid var(--border2);
-}
-/* Burger Open State */
-body.menu-open {
-  overflow: hidden;
-}
-body.menu-open .burger-btn {
-  background: var(--text);
-  border-color: var(--text);
-}
-body.menu-open .burger-line {
-  background: var(--bg);
-}
-body.menu-open .burger-line:nth-child(1) {
-  transform: translateY(2.75px) rotate(45deg);
-}
-body.menu-open .burger-line:nth-child(2) {
-  transform: translateY(-2.75px) rotate(-45deg);
+  transform: translateY(0);
 }
 
+/* ── PROJECT HERO ── */
 .project-hero {
-  padding: 160px 32px 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+  padding: 160px 32px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 }
 .project-title {
-  font-size: clamp(40px, 6vw, 90px);
-  font-weight: 500;
-  text-transform: none;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 300;
+  line-height: 1.05;
   letter-spacing: -0.03em;
-  line-height: 0.96;
+  margin-bottom: 8px;
 }
 .project-meta {
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-top: 16px;
-}
-.project-description {
-  max-width: 100%;
-  margin: 0;
-  text-align: left;
+  font-size: 14px;
+  color: var(--text2);
+  margin-bottom: 24px;
 }
 .project-description h3 {
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--text3);
   margin-bottom: 12px;
-  font-weight: 400;
 }
 .project-description p {
   font-size: clamp(20px, 1.6vw, 26px);
-  line-height: 1.6;
-  color: var(--text2);
+  line-height: 1.45;
+  color: var(--text);
   font-weight: 300;
+  letter-spacing: -0.01em;
+  max-width: 100%;
 }
+
 @media(max-width: 768px) {
-  .project-description p {
-    font-size: 18px;
-    font-weight: 400;
+  .project-hero {
+    grid-template-columns: 1fr;
+    padding-top: 120px;
   }
 }
+
+/* ── PROJECT GALLERY ── */
 .project-gallery {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 32px 140px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 0;
 }
 .project-gallery img {
-  width: auto;
+  display: block;
+  width: 100%;
   height: auto;
-  max-width: 60%;
-  border-radius: 4px;
-  border: 0.5px solid var(--border);
-  background: var(--bg2);
+  max-width: 100%;
+  border-radius: 0;
+  border: none;
+  background: transparent;
   transition: transform 0.6s cubic-bezier(0.2, 0.65, 0.35, 1), opacity 0.6s ease;
   opacity: 0;
   transform: translateY(40px);
@@ -402,146 +328,6 @@ body.menu-open .burger-line:nth-child(2) {
   opacity: 1;
   transform: translateY(0);
 }
-
-.project-gallery img:nth-child(1) { align-self: center; max-width: 80%; }
-
-/* ── PROJECT STATS & PIE CHART ── */
-.project-stats {
-  max-width: 1200px;
-  margin: 40px auto 80px;
-  padding: 0 32px;
-}
-.stats-container {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 60px;
-  align-items: center;
-  background: var(--bg2);
-  padding: 48px;
-  border-radius: 12px;
-  border: 0.5px solid var(--border);
-}
-.stats-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text3);
-  display: block;
-  margin-bottom: 12px;
-}
-.stats-heading {
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.3;
-  margin-bottom: 20px;
-  color: var(--text);
-}
-.stats-quote {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--text2);
-  margin-bottom: 32px;
-  border-left: 2px solid var(--border2);
-  padding-left: 16px;
-}
-.stats-quote strong {
-  color: var(--text);
-}
-.stats-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.metric-card {
-  display: flex;
-  flex-direction: column;
-}
-.metric-val {
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.1;
-  color: var(--text);
-}
-.metric-desc {
-  font-size: 11px;
-  color: var(--text3);
-  line-height: 1.4;
-  margin-top: 6px;
-}
-
-.stats-chart-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-}
-.chart-box {
-  position: relative;
-  width: 220px;
-  height: 220px;
-}
-.pie-chart-svg {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-.chart-segment {
-  fill: none;
-  stroke-width: 24;
-  transition: stroke-dasharray 1s ease, stroke-dashoffset 1s ease;
-}
-.seg-1 { stroke: #10b981; stroke-dasharray: 136.34 439.82; stroke-dashoffset: 0; }
-.seg-2 { stroke: #f59e0b; stroke-dasharray: 101.16 439.82; stroke-dashoffset: -136.34; }
-.seg-3 { stroke: #ef4444; stroke-dasharray: 61.57 439.82; stroke-dashoffset: -237.50; }
-.seg-4 { stroke: var(--border2); stroke-dasharray: 140.74 439.82; stroke-dashoffset: -299.07; }
-
-.chart-center-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  pointer-events: none;
-}
-.chart-big-num {
-  display: block;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--text);
-}
-.chart-sub-label {
-  display: block;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text3);
-  margin-top: 4px;
-}
-
-.chart-legend {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  color: var(--text2);
-}
-.legend-item .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.seg-1-bg { background: #10b981; }
-.seg-2-bg { background: #f59e0b; }
-.seg-3-bg { background: #ef4444; }
-.seg-4-bg { background: var(--border2); }
 
 footer{
   padding:20px 32px;
@@ -572,211 +358,14 @@ footer span:last-child{text-align:right;}
   .burger-btn {
     display: flex;
   }
-  .nav-inner {
-    padding: 10px 20px;
-  }
-  .nav-name {
-    display: none;
-  }
-  .nav-center {
-    position: static;
-    transform: none;
-  }
-  .nav-contact-btn {
-    display: none;
-  }
-  .dm-btn {
-    display: none;
-  }
-  .burger-btn {
-    display: flex;
-  }
-  .project-gallery { gap: 60px; padding-bottom: 80px; }
+  .project-gallery { gap: 0; padding-bottom: 0; }
   .project-gallery img { 
     max-width: 100% !important; 
     align-self: center !important; 
     margin: 0 !important; 
     transform: none !important;
   }
-  
-/* Burger button styles */
-.burger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1600;
 }
-.burger-line {
-  width: 100%;
-  height: 1.5px;
-  background: var(--text);
-  transition: all 0.3s;
-}
-
-/* Mobile Overlay */
-.mobile-nav {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  z-index: 1500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.mobile-nav.active {
-  opacity: 1;
-  visibility: visible;
-}
-.close-mobile {
-  position: absolute;
-  top: 18px;
-  right: 32px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 0.5px solid var(--border2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 20px;
-  color: var(--text);
-}
-.mobile-nav a {
-  font-size: 32px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-weight: 400;
-  color: var(--text);
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-.mobile-nav .dm-btn {
-  display: block !important;
-  border: 0.5px solid var(--border2);
-}
-/* Burger Open State */
-body.menu-open {
-  overflow: hidden;
-}
-body.menu-open .burger-btn {
-  background: var(--text);
-  border-color: var(--text);
-}
-body.menu-open .burger-line {
-  background: var(--bg);
-}
-body.menu-open .burger-line:nth-child(1) {
-  transform: translateY(2.75px) rotate(45deg);
-}
-body.menu-open .burger-line:nth-child(2) {
-  transform: translateY(-2.75px) rotate(-45deg);
-}
-
-
-/* Burger button styles */
-.burger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1600;
-}
-.burger-line {
-  width: 100%;
-  height: 1.5px;
-  background: var(--text);
-  transition: all 0.3s;
-}
-
-/* Mobile Overlay */
-.mobile-nav {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  z-index: 1500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.mobile-nav.active {
-  opacity: 1;
-  visibility: visible;
-}
-.close-mobile {
-  position: absolute;
-  top: 18px;
-  right: 32px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 0.5px solid var(--border2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 20px;
-  color: var(--text);
-}
-.mobile-nav a {
-  font-size: 32px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-weight: 400;
-  color: var(--text);
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-.mobile-nav .dm-btn {
-  display: block !important;
-  border: 0.5px solid var(--border2);
-}
-/* Burger Open State */
-body.menu-open {
-  overflow: hidden;
-}
-body.menu-open .burger-btn {
-  background: var(--text);
-  border-color: var(--text);
-}
-body.menu-open .burger-line {
-  background: var(--bg);
-}
-body.menu-open .burger-line:nth-child(1) {
-  transform: translateY(2.75px) rotate(45deg);
-}
-body.menu-open .burger-line:nth-child(2) {
-  transform: translateY(-2.75px) rotate(-45deg);
-}
-
-.project-hero {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding-top: 120px;
-  }
-}
-
 
 /* ── CAROUSEL ── */
 .carousel-title-container {
@@ -947,44 +536,6 @@ body:not(.dark-mode) .card-c9 .card-bg { background: #e0dcd8; color: rgba(0,0,0,
 body:not(.dark-mode) .card-c10 .card-bg { background: #d8e0dc; color: rgba(0,0,0,0.06); }
 
 body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
-/* Mobile Burger Menu Optimization */
-@media (max-width: 768px) {
-  .burger-btn {
-    display: flex !important;
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 50% !important;
-    border: 0.5px solid var(--border2) !important;
-    background: var(--bg) !important;
-    cursor: pointer !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 4px !important;
-    z-index: 2000 !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    padding: 0 !important;
-  }
-  .burger-line {
-    width: 18px !important;
-    height: 1.5px !important;
-    background: var(--text) !important;
-    transition: all 0.3s !important;
-  }
-  body.menu-open .burger-btn {
-    background: var(--text) !important;
-    border-color: var(--text) !important;
-  }
-  body.menu-open .burger-line {
-    background: var(--bg) !important;
-  }
-  body.menu-open .burger-line:nth-child(1) {
-    transform: translateY(2.75px) rotate(45deg) !important;
-  }
-  body.menu-open .burger-line:nth-child(2) {
-    transform: translateY(-2.75px) rotate(-45deg) !important;
-  }
-}
 </style>
 </head>
 <body>
@@ -1010,83 +561,26 @@ body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
 
 <section class="project-hero">
   <div>
-    <div class="project-title">Nestify</div>
+    <div class="project-title">3D Icons</div>
     <div class="project-meta">UI / UX · 2026</div>
   </div>
   <div class="project-description">
     <h3>About the project</h3>
     <p>
-      This project aims to address the issue of student housing and the resulting economic and social problems associated with it. Starting with an analysis of the real estate market in Italian university cities, we highlight the main challenges that young people face when searching for economically sustainable and accessible housing solutions, all of which is exacerbated by competition from short-term tourism.
+      A series of custom 3D iconography created in Blender, designed specifically for modern UI/UX digital interfaces and design systems. Combining tactile depth, vibrant lighting, and clean geometric forms to elevate user engagement and visual hierarchy in mobile and web applications.
     </p>
   </div>
 </section>
 
-<section class="project-stats reveal">
-  <div class="stats-container">
-    <div class="stats-info">
-      <span class="stats-label">Research & Data Insights</span>
-      <h3 class="stats-heading">La ricerca sugli alloggi universitari a Venezia</h3>
-      <p class="stats-quote">
-        “Secondo la ricerca il <strong>68%</strong> dei ragazzi intervistati desidera o ha provato a cercare una casa a Venezia, tuttavia il <strong>23%</strong> ha interrotto la ricerca dopo più di 6 mesi ed il <strong>14%</strong> dopo più di un anno.”
-      </p>
-      <div class="stats-metrics">
-        <div class="metric-card">
-          <span class="metric-val">68%</span>
-          <span class="metric-desc">Cerca o desidera un alloggio a Venezia</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-val">23%</span>
-          <span class="metric-desc">Ricerca interrotta dopo oltre 6 mesi</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-val">14%</span>
-          <span class="metric-desc">Ricerca interrotta dopo oltre 1 anno</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="stats-chart-wrapper">
-      <div class="chart-box">
-        <svg class="pie-chart-svg" viewBox="0 0 200 200">
-          <!-- Segment 1: 31% Active / Found -->
-          <circle class="chart-segment seg-1" cx="100" cy="100" r="70" />
-          <!-- Segment 2: 23% Abandoned > 6 months -->
-          <circle class="chart-segment seg-2" cx="100" cy="100" r="70" />
-          <!-- Segment 3: 14% Abandoned > 1 year -->
-          <circle class="chart-segment seg-3" cx="100" cy="100" r="70" />
-          <!-- Segment 4: 32% Not searching / Other -->
-          <circle class="chart-segment seg-4" cx="100" cy="100" r="70" />
-        </svg>
-        <div class="chart-center-text">
-          <span class="chart-big-num">68%</span>
-          <span class="chart-sub-label">Domanda Alloggio</span>
-        </div>
-      </div>
-
-      <div class="chart-legend">
-        <div class="legend-item">
-          <span class="dot seg-1-bg"></span>
-          <span class="legend-text">31% — Ricerca attiva / Alloggio trovato</span>
-        </div>
-        <div class="legend-item">
-          <span class="dot seg-2-bg"></span>
-          <span class="legend-text">23% — Interrotto la ricerca (> 6 mesi)</span>
-        </div>
-        <div class="legend-item">
-          <span class="dot seg-3-bg"></span>
-          <span class="legend-text">14% — Interrotto la ricerca (> 1 anno)</span>
-        </div>
-        <div class="legend-item">
-          <span class="dot seg-4-bg"></span>
-          <span class="legend-text">32% — Non in ricerca</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="project-gallery">
-  <img src="../Nestify/WEBP/problema.webp" alt="Nestify">
+  <img src="../3d%20icons/WEBP/full.webp" alt="3D Icons Full Grid">
+  <img src="../3d%20icons/WEBP/models.webp" alt="3D Icons Clay Models">
+  <img src="../3d%20icons/WEBP/bolt.webp" alt="3D Bolt Icon">
+  <img src="../3d%20icons/WEBP/target.webp" alt="3D Target Icon">
+  <img src="../3d%20icons/WEBP/calendar.webp" alt="3D Calendar Icon">
+  <img src="../3d%20icons/WEBP/bitcoin.webp" alt="3D Bitcoin Icon">
+  <img src="../3d%20icons/WEBP/kart.webp" alt="3D Shopping Cart Icon">
+  <img src="../3d%20icons/WEBP/shield.webp" alt="3D Shield Icon">
 </section>
 
 
@@ -1097,60 +591,91 @@ body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
   </div>
   <div class="carousel-container">
     <div class="carousel-track">
-      <div class="card card-c1" onclick="window.location.href='noch_caffe.html'">
-        <div class="card-bg" style="background-image: url('../Noch%20Caff%C3%A8/Free_Menu_Mockup_2.webp'); background-size: cover; background-position: center;"></div>
+      <div class="card card-c1" onclick="window.location.href='line_up.html'">
+        <div class="card-bg" style="background-image: url('../Brochure%20Vorpa/WEBP/A4_Borchure_Mockup_8.webp'); background-size: cover; background-position: center;"></div>
         <div class="card-overlay">
-          <div class="card-top"><span class="card-num">01</span></div>
+          <div class="card-top">
+            <span class="card-num">01</span>
+            <span class="card-view">View project →</span>
+          </div>
           <div class="card-bottom">
-            <div class="card-name">Noch Caffè</div>
-            <div class="card-type">Visual Identity · 2024</div>
+            <div class="card-name">Lineup</div>
+            <div class="card-type">Printing · 2026</div>
           </div>
         </div>
       </div>
-      <div class="card card-c2" onclick="window.location.href='misematch.html'">
-        <div class="card-bg" style="background-image: url('../Misematch/WEBP/logo%20mockup.webp'); background-size: cover; background-position: center;"></div>
-        <div class="card-overlay">
-          <div class="card-top"><span class="card-num">02</span></div>
-          <div class="card-bottom">
-            <div class="card-name">Misematch</div>
-            <div class="card-type">Visual Identity · 2024</div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-c3" onclick="window.location.href='zephyn.html'">
+      <div class="card card-c2" onclick="window.location.href='zephyn.html'">
         <div class="card-bg" style="background-image: url('../Zephyn/WEBP/Office%20art.webp'); background-size: cover; background-position: center;"></div>
         <div class="card-overlay">
-          <div class="card-top"><span class="card-num">03</span></div>
+          <div class="card-top">
+            <span class="card-num">02</span>
+            <span class="card-view">View project →</span>
+          </div>
           <div class="card-bottom">
             <div class="card-name">Zephyn</div>
             <div class="card-type">Visual Identity · 2025</div>
           </div>
         </div>
       </div>
-      <div class="card card-c4" onclick="window.location.href='cajiga.html'">
+      <div class="card card-c3" onclick="window.location.href='cajiga.html'">
         <div class="card-bg" style="background-image: url('../Cajiga%20Inmuebles/WEBP/Free_Poster_Set_Mockup_1.webp'); background-size: cover; background-position: center;"></div>
         <div class="card-overlay">
-          <div class="card-top"><span class="card-num">04</span></div>
+          <div class="card-top">
+            <span class="card-num">03</span>
+            <span class="card-view">View project →</span>
+          </div>
           <div class="card-bottom">
             <div class="card-name">Cajiga Inmuebles</div>
             <div class="card-type">Visual Identity · 2025</div>
           </div>
         </div>
       </div>
-      <div class="card card-c5" onclick="window.location.href='experiment_1.html'">
+      <div class="card card-c4" onclick="window.location.href='experiment_1.html'">
         <div class="card-bg"><video src="../Motion/Composition%201.mp4" autoplay muted loop playsinline></video></div>
         <div class="card-overlay">
-          <div class="card-top"><span class="card-num">05</span></div>
+          <div class="card-top">
+            <span class="card-num">04</span>
+            <span class="card-view">View project →</span>
+          </div>
           <div class="card-bottom">
             <div class="card-name">Particles</div>
             <div class="card-type">Motion Design · 2025</div>
           </div>
         </div>
       </div>
-      <div class="card card-c6" onclick="window.location.href='mad.html'">
+      <div class="card card-c5" onclick="window.location.href='noch_caffe.html'">
+        <div class="card-bg" style="background-image: url('../Noch%20Caff%C3%A8/Free_Menu_Mockup_2.webp'); background-size: cover; background-position: center;"></div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">05</span>
+            <span class="card-view">View project →</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Noch Caffè</div>
+            <div class="card-type">Visual Identity · 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-c6" onclick="window.location.href='misematch.html'">
+        <div class="card-bg" style="background-image: url('../Misematch/WEBP/logo%20mockup.webp'); background-size: cover; background-position: center;"></div>
+        <div class="card-overlay">
+          <div class="card-top">
+            <span class="card-num">06</span>
+            <span class="card-view">View project →</span>
+          </div>
+          <div class="card-bottom">
+            <div class="card-name">Misematch</div>
+            <div class="card-type">Visual Identity · 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-c7" onclick="window.location.href='mad.html'">
         <div class="card-bg"><video src="../MAD/Citron_Gatti_Marangon_Trailer.mp4" autoplay muted loop playsinline></video></div>
         <div class="card-overlay">
-          <div class="card-top"><span class="card-num">06</span></div>
+          <div class="card-top">
+            <span class="card-num">07</span>
+            <span class="card-view">View project →</span>
+          </div>
           <div class="card-bottom">
             <div class="card-name">MAD Museum</div>
             <div class="card-type">Motion Design · 2022</div>
@@ -1179,11 +704,6 @@ function toggleMenu() {
   document.getElementById('mobileNav').classList.toggle('active');
 }
 
-function toggleMenu() {
-  document.body.classList.toggle('menu-open');
-  document.getElementById('mobileNav').classList.toggle('active');
-}
-
 const observerOptions = {
   threshold: 0.1,
   rootMargin: '0px 0px -50px 0px'
@@ -1205,7 +725,6 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.project-gallery img, .project-gallery video, .reveal').forEach(el => {
     observer.observe(el);
   });
-});
 
   // Carousel Drag Logic
   const slider = document.querySelector('.carousel-container');
@@ -1233,6 +752,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const walk = (x - startX) * 2;
       slider.scrollLeft = scrollLeft - walk;
     });
+  }
 
   // Global Custom Cursor
   const mainCursor = document.createElement('div');
@@ -1259,20 +779,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('mouseleave', () => mainCursor.style.opacity = '0');
   document.addEventListener('mouseenter', () => mainCursor.style.opacity = '1');
-
 });
-  }
 
 </script>
-<!-- MOBILE NAV OVERLAY -->
-<div class="mobile-nav" id="mobileNav">
-  <div class="close-mobile" onclick="toggleMenu()">✕</div>
-  <a href="../index.html#about" onclick="toggleMenu()">About</a>
-  <a href="../index.html#projects" onclick="toggleMenu()">Projects</a>
-  <a href="../index.html#skills" onclick="toggleMenu()">Skills</a>
-  <a href="mailto:rmarangon.design@gmail.com">Contact</a>
-  <div class="dm-btn" onclick="toggleDark()" title="Toggle dark mode"></div>
-</div>
 
 <!-- MOBILE NAV OVERLAY -->
 <div class="mobile-nav" id="mobileNav">
