@@ -659,11 +659,9 @@ footer {
 
 <script>
 function toggleDark(){
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
-}
-if(localStorage.getItem('dark')==='true'){
-  document.body.classList.add('dark-mode');
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('dark', isDark);
+  localStorage.setItem('darkMode', isDark);
 }
 
 function toggleMenu(){
@@ -681,60 +679,87 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('dark') === 'true' || localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
 
-// Carousel Drag Logic
-const slider = document.querySelector('.carousel-container');
-if (slider) {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active');
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-  });
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-  });
-  slider.addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2;
-    slider.scrollLeft = scrollLeft - walk;
-  });
-}
+  // Carousel Drag Logic
+  const slider = document.querySelector('.carousel-container');
+  if (slider) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let isDragging = false;
 
-// Global Custom Cursor Logic
-const mainCursor = document.createElement('div');
-mainCursor.className = 'main-cursor';
-document.body.appendChild(mainCursor);
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      isDragging = false;
+      slider.style.cursor = 'grabbing';
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
 
-document.addEventListener('mousemove', (e) => {
-  mainCursor.style.left = e.clientX + 'px';
-  mainCursor.style.top = e.clientY + 'px';
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.style.cursor = 'grab';
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.style.cursor = 'grab';
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.8;
+      if (Math.abs(x - startX) > 5) {
+        isDragging = true;
+      }
+      if (isDragging) {
+        e.preventDefault();
+        slider.scrollLeft = scrollLeft - walk;
+      }
+    });
+
+    slider.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (isDragging) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    });
+  }
+
+  // Global Custom Cursor Logic
+  const mainCursor = document.createElement('div');
+  mainCursor.className = 'main-cursor';
+  document.body.appendChild(mainCursor);
+
+  document.addEventListener('mousemove', (e) => {
+    mainCursor.style.left = e.clientX + 'px';
+    mainCursor.style.top = e.clientY + 'px';
+  });
+
+  const updateInteractiveListeners = () => {
+    const interactiveElements = document.querySelectorAll('a, button, .dm-btn, .card, .close-mobile');
+    interactiveElements.forEach(el => {
+      if (!el.dataset.cursorBound) {
+        el.addEventListener('mouseenter', () => mainCursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => mainCursor.classList.remove('active'));
+        el.dataset.cursorBound = "true";
+      }
+    });
+  };
+  updateInteractiveListeners();
+
+  document.addEventListener('mouseleave', () => mainCursor.style.opacity = '0');
+  document.addEventListener('mouseenter', () => mainCursor.style.opacity = '1');
 });
-
-const updateInteractiveListeners = () => {
-  const interactiveElements = document.querySelectorAll('a, button, .dm-btn, .card, .close-mobile');
-  interactiveElements.forEach(el => {
-    if (!el.dataset.cursorBound) {
-      el.addEventListener('mouseenter', () => mainCursor.classList.add('active'));
-      el.addEventListener('mouseleave', () => mainCursor.classList.remove('active'));
-      el.dataset.cursorBound = "true";
-    }
-  });
-};
-updateInteractiveListeners();
-
-document.addEventListener('mouseleave', () => mainCursor.style.opacity = '0');
-document.addEventListener('mouseenter', () => mainCursor.style.opacity = '1');
 </script>
 <!-- MOBILE NAV OVERLAY -->
 <div class="mobile-nav" id="mobileNav">
