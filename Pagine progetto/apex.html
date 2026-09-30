@@ -3,37 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabasco — 4K Motion Design | Riccardo Marangon</title>
-<meta name="description" content="Tabasco 4K Motion Design: When Tabasco appears, a spark ignites between a distant couple, transforming a cold blue atmosphere into a glowing amber heat.">
-<meta name="keywords" content="Tabasco, Motion Design, 4K Video, Riccardo Marangon, Animation, Branding Video, MangoStudio">
+<title>Apex — Motion Design | Riccardo Marangon</title>
+<meta name="description" content="Progetto di Motion Design per Apex realizzato da Riccardo Marangon. Transizioni dinamiche, ritmo visivo e animazione ad alto impatto.">
+<meta name="keywords" content="Apex, Motion Design, Video, Riccardo Marangon, Animation, Branding Video, MangoStudio">
 <meta name="author" content="Riccardo Marangon">
 <meta name="robots" content="index, follow, max-image-preview:large">
 
 <!-- Open Graph / Facebook / LinkedIn -->
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Riccardo Marangon | MangoStudio">
-<meta property="og:title" content="Tabasco — 4K Motion Design | Riccardo Marangon">
-<meta property="og:description" content="Progetto di Motion Design 4K per Tabasco realizzato da Riccardo Marangon. Transizioni dinamiche, tipografia d'impatto e ritmo visivo cinematografico.">
-<meta property="og:image" content="../tabasco/Montage%204K%20Tabasco.mp4">
+<meta property="og:title" content="Apex — Motion Design | Riccardo Marangon">
+<meta property="og:description" content="Progetto di Motion Design per Apex realizzato da Riccardo Marangon. Transizioni dinamiche e ritmo visivo ad alto impatto.">
+<meta property="og:image" content="../Apex%20video/Apex%20video%20website%20No%20Logo.mp4">
 <meta property="og:locale" content="it_IT">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tabasco — 4K Motion Design | Riccardo Marangon">
-<meta name="twitter:description" content="Progetto di Motion Design 4K per Tabasco realizzato da Riccardo Marangon. Transizioni dinamiche, tipografia d'impatto e ritmo visivo cinematografico.">
-<meta name="twitter:image" content="../tabasco/Montage%204K%20Tabasco.mp4">
+<meta name="twitter:title" content="Apex — Motion Design | Riccardo Marangon">
+<meta name="twitter:description" content="Progetto di Motion Design per Apex realizzato da Riccardo Marangon. Transizioni dinamiche e ritmo visivo ad alto impatto.">
+<meta name="twitter:image" content="../Apex%20video/Apex%20video%20website%20No%20Logo.mp4">
 
 <!-- Schema.org JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Tabasco",
+  "name": "Apex",
   "author": {
     "@type": "Person",
     "name": "Riccardo Marangon"
   },
-  "description": "Progetto di Motion Design 4K per Tabasco realizzato da Riccardo Marangon. Transizioni dinamiche, tipografia d'impatto e ritmo visivo cinematografico."
+  "description": "Progetto di Motion Design per Apex realizzato da Riccardo Marangon."
 }
 </script>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap">
@@ -100,18 +100,7 @@ a, button, .dm-btn, .card {
   mix-blend-mode: difference;
 }
 
-@media (pointer: coarse), (max-width: 768px) {
-  .main-cursor {
-    display: none !important;
-  }
-  body {
-    cursor: auto !important;
-  }
-  a, button, .dm-btn, .card, .burger-btn, .close-mobile, .nav-links a {
-    cursor: pointer !important;
-  }
-}
-
+/* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   background:var(--nav-bg);
@@ -159,23 +148,16 @@ nav{
 .nav-links a::after {
   top:100%;color:var(--text);transform:translateY(0);
 }
-.nav-links a:hover::before {
-  transform:translateY(-100%);
-}
-.nav-links a:hover::after {
-  transform:translateY(-100%);
-}
+.nav-links a:hover::before { transform:translateY(-100%); }
+.nav-links a:hover::after { transform:translateY(-100%); }
 .nav-right{display:flex;align-items:center;gap:16px;}
-.nav-contact-btn {
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text);
-  text-decoration: none;
-  border: 0.5px solid var(--border2);
-  padding: 6px 16px;
-  border-radius: 100px;
-  transition: background 0.3s, color 0.3s;
+.nav-contact-btn{
+  font-family:'Satoshi',sans-serif;
+  font-size:13px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text);text-decoration:none;
+  border:0.5px solid var(--border2);
+  padding:9px 20px;border-radius:100px;
+  transition:background 0.18s,color 0.18s;
 }
 .nav-contact-btn:hover {
   background: var(--text);
@@ -430,31 +412,17 @@ body.menu-open .burger-line:nth-child(2) {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(40px, 6vw, 80px);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  user-select: none;
-  padding: 28px;
-  line-height: 0.9;
-  align-items: flex-start;
-}
-
-.card:hover .card-bg {
-  filter: blur(8px);
-  transform: scale(1.04);
 }
 
 .card-overlay {
   position: absolute;
   inset: 0;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px 28px;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  background: rgba(0,0,0,0.35);
+  transition: opacity 0.3s;
 }
 
 .dark-mode .card-overlay {
@@ -581,29 +549,24 @@ footer {
 
 <section class="project-hero">
   <div>
-    <div class="project-title">Tabasco</div>
+    <div class="project-title">Apex</div>
     <div class="project-meta">Motion Design · 2026</div>
   </div>
   <div class="project-description">
-    <h3>Concept & Narrative</h3>
+    <h3>Concept & Video</h3>
     <p>
-      When Tabasco appears, a spark ignites between the couple.
+      Progetto di Motion Design per Apex.
     </p>
     <br>
     <p style="font-size: clamp(16px, 1.3vw, 20px); color: var(--text2); line-height: 1.6;">
-      A young couple sits on the couch watching TV—distant, cold, with no spark between them. Nearby in the kitchen, a cat strolling along a shelf casually knocks down a bottle of Tabasco, splashing it into their shared popcorn. Unaware, they take a bite and the heat instantly hits. The atmosphere transforms: the ice in their drinks melts away, her hair falls in slow motion, and the cold blue palette warms into a glowing amber.
+      Esplorazione visiva dinamica che unisce ritmo cinematografico, composizioni in movimento e animazioni ad alto impatto.
     </p>
   </div>
 </section>
 
 <section class="project-gallery reveal">
   <div style="max-width: 1400px; margin: 0 auto; padding: 0 32px 60px; display: flex; flex-direction: column; gap: 40px;">
-    <video src="../Tabasco/Montage_Tabasco_720p.mp4" autoplay muted loop playsinline style="width: 100%; border-radius: 12px; display: block; box-shadow: 0 20px 60px rgba(0,0,0,0.15);"></video>
-    <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); background: var(--bg2);">
-      <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
-        src="https://www.canva.com/design/DAHNg0MlrBc/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-      </iframe>
-    </div>
+    <video src="../Apex%20video/Apex%20video%20website%20No%20Logo.mp4" controls autoplay muted loop playsinline style="width: 100%; border-radius: 12px; display: block; box-shadow: 0 20px 60px rgba(0,0,0,0.15);"></video>
   </div>
 </section>
 
@@ -614,9 +577,9 @@ footer {
   </div>
   <div class="carousel-container">
     <div class="carousel-track">
-      <div class="card card-c5" onclick="window.location.href='apex.html'">
+      <div class="card card-c6" onclick="window.location.href='tabasco.html'">
         <div class="card-bg">
-          <video src="../Apex%20video/Apex%20video%20website%20No%20Logo.mp4" autoplay muted loop playsinline></video>
+          <video src="../Tabasco/Montage_Tabasco_720p.mp4" autoplay muted loop playsinline></video>
         </div>
         <div class="card-overlay">
           <div class="card-top">
@@ -624,7 +587,7 @@ footer {
             <span class="card-view">View project →</span>
           </div>
           <div class="card-bottom">
-            <div class="card-name">Apex</div>
+            <div class="card-name">Tabasco</div>
             <div class="card-type">Motion Design · 2026</div>
           </div>
         </div>
@@ -646,7 +609,7 @@ footer {
         <div class="card-bg" style="background-image: url('../Brochure%20Vorpa/WEBP/A4_Borchure_Mockup_8.webp'); background-size: cover; background-position: center;"></div>
         <div class="card-overlay">
           <div class="card-top">
-            <span class="card-num">02</span>
+            <span class="card-num">03</span>
             <span class="card-view">View project →</span>
           </div>
           <div class="card-bottom">
@@ -659,7 +622,7 @@ footer {
         <div class="card-bg" style="background-image: url('../Zephyn/WEBP/Office%20art.webp'); background-size: cover; background-position: center;"></div>
         <div class="card-overlay">
           <div class="card-top">
-            <span class="card-num">03</span>
+            <span class="card-num">04</span>
             <span class="card-view">View project →</span>
           </div>
           <div class="card-bottom">
@@ -668,63 +631,13 @@ footer {
           </div>
         </div>
       </div>
-      <div class="card card-c4" onclick="window.location.href='cajiga.html'">
-        <div class="card-bg" style="background-image: url('../Cajiga%20Inmuebles/WEBP/Free_Poster_Set_Mockup_1.webp'); background-size: cover; background-position: center;"></div>
-        <div class="card-overlay">
-          <div class="card-top">
-            <span class="card-num">04</span>
-            <span class="card-view">View project →</span>
-          </div>
-          <div class="card-bottom">
-            <div class="card-name">Cajiga Inmuebles</div>
-            <div class="card-type">Visual Identity · 2025</div>
-          </div>
+      <div class="card card-c6" onclick="window.location.href='mad.html'">
+        <div class="card-bg">
+          <video src="../MAD/Citron_Gatti_Marangon_Trailer.mp4" autoplay muted loop playsinline></video>
         </div>
-      </div>
-      <div class="card card-c5" onclick="window.location.href='experiment_1.html'">
-        <div class="card-bg"><video src="../Motion/Composition%201.mp4" autoplay muted loop playsinline></video></div>
         <div class="card-overlay">
           <div class="card-top">
             <span class="card-num">05</span>
-            <span class="card-view">View project →</span>
-          </div>
-          <div class="card-bottom">
-            <div class="card-name">Particles</div>
-            <div class="card-type">Motion Design · 2025</div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-c6" onclick="window.location.href='noch_caffe.html'">
-        <div class="card-bg" style="background-image: url('../Noch%20Caff%C3%A8/Free_Menu_Mockup_2.webp'); background-size: cover; background-position: center;"></div>
-        <div class="card-overlay">
-          <div class="card-top">
-            <span class="card-num">06</span>
-            <span class="card-view">View project →</span>
-          </div>
-          <div class="card-bottom">
-            <div class="card-name">Noch Caffè</div>
-            <div class="card-type">Visual Identity · 2024</div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-c7" onclick="window.location.href='misematch.html'">
-        <div class="card-bg" style="background-image: url('../Misematch/WEBP/logo%20mockup.webp'); background-size: cover; background-position: center;"></div>
-        <div class="card-overlay">
-          <div class="card-top">
-            <span class="card-num">07</span>
-            <span class="card-view">View project →</span>
-          </div>
-          <div class="card-bottom">
-            <div class="card-name">Misematch</div>
-            <div class="card-type">Visual Identity · 2024</div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-c8" onclick="window.location.href='mad.html'">
-        <div class="card-bg"><video src="../MAD/Citron_Gatti_Marangon_Trailer.mp4" autoplay muted loop playsinline></video></div>
-        <div class="card-overlay">
-          <div class="card-top">
-            <span class="card-num">08</span>
             <span class="card-view">View project →</span>
           </div>
           <div class="card-bottom">
