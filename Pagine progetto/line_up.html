@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lineup — Brochure e catalogo tecnico per Vorpa | Riccardo Marangon</title>
+<title>Lineup: Brochure e catalogo tecnico per Vorpa | Riccardo Marangon</title>
 <meta name="description" content="Brochure “Lineup” per il marchio Vorpa di Diversitech Europe: griglie, tipografia e gerarchia visiva per un catalogo tecnico chiaro. Di Riccardo Marangon, visual designer a Padova.">
 <meta name="author" content="Riccardo Marangon">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Riccardo Marangon | MangoStudio">
 <meta property="og:url" content="https://mangostudio.it/Pagine%20progetto/line_up.html">
-<meta property="og:title" content="Lineup — Brochure e catalogo tecnico per Vorpa | Riccardo Marangon">
+<meta property="og:title" content="Lineup: Brochure e catalogo tecnico per Vorpa | Riccardo Marangon">
 <meta property="og:description" content="Brochure “Lineup” per il marchio Vorpa di Diversitech Europe: griglie, tipografia e gerarchia visiva per un catalogo tecnico chiaro. Di Riccardo Marangon, visual designer a Padova.">
 <meta property="og:image" content="https://mangostudio.it/OG/line_up.jpg">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Lineup — Brochure e catalogo tecnico per Vorpa | Riccardo Marangon">
+<meta name="twitter:title" content="Lineup: Brochure e catalogo tecnico per Vorpa | Riccardo Marangon">
 <meta name="twitter:description" content="Brochure “Lineup” per il marchio Vorpa di Diversitech Europe: griglie, tipografia e gerarchia visiva per un catalogo tecnico chiaro. Di Riccardo Marangon, visual designer a Padova.">
 <meta name="twitter:image" content="https://mangostudio.it/OG/line_up.jpg">
 
@@ -37,7 +37,7 @@
       "@type": "CreativeWork",
       "@id": "https://mangostudio.it/Pagine%20progetto/line_up.html#progetto",
       "name": "Lineup",
-      "headline": "Lineup — Brochure e catalogo tecnico per Vorpa",
+      "headline": "Lineup: Brochure e catalogo tecnico per Vorpa",
       "description": "Brochure “Lineup” per il marchio Vorpa di Diversitech Europe: griglie, tipografia e gerarchia visiva per un catalogo tecnico chiaro. Di Riccardo Marangon, visual designer a Padova.",
       "url": "https://mangostudio.it/Pagine%20progetto/line_up.html",
       "image": "https://mangostudio.it/OG/line_up.jpg",
@@ -48,7 +48,10 @@
         "@type": "Person",
         "@id": "https://mangostudio.it/#person",
         "name": "Riccardo Marangon"
-      }
+      },
+      "contributor": [
+        { "@type": "Person", "name": "Davide Brusegan", "description": "Art direction" }
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -449,7 +452,26 @@ body.menu-open .burger-line:nth-child(2) {
   max-width: 100%;
 }
 
+.project-credits {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 8px 40px;
+  margin-top: 8px;
+}
+.project-credits dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+}
+.project-credits dd {
+  font-size: 14px;
+  color: var(--text);
+}
+
 @media(max-width: 768px) {
+  .project-credits { grid-template-columns: 1fr 1fr; }
   .project-hero {
     grid-template-columns: 1fr;
     padding-top: 120px;
@@ -970,6 +992,9 @@ body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
   <div>
     <h1 class="project-title">Lineup</h1>
     <div class="project-meta">Stampa · 2026</div>
+    <dl class="project-credits">
+      <div><dt>Art director</dt><dd>Davide Brusegan</dd></div>
+    </dl>
   </div>
   <div class="project-description">
     <h2>Il progetto</h2>

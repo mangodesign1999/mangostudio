@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAD Museum — Trailer in Motion Design | Riccardo Marangon</title>
+<title>MAD Museum: Trailer in Motion Design | Riccardo Marangon</title>
 <meta name="description" content="Trailer in motion design per il MAD Museum (Museum of Arts and Design), tra arte, artigianato e design. Di Riccardo Marangon con Citron e Gatti.">
 <meta name="author" content="Riccardo Marangon">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Riccardo Marangon | MangoStudio">
 <meta property="og:url" content="https://mangostudio.it/Pagine%20progetto/mad.html">
-<meta property="og:title" content="MAD Museum — Trailer in Motion Design | Riccardo Marangon">
+<meta property="og:title" content="MAD Museum: Trailer in Motion Design | Riccardo Marangon">
 <meta property="og:description" content="Trailer in motion design per il MAD Museum (Museum of Arts and Design), tra arte, artigianato e design. Di Riccardo Marangon con Citron e Gatti.">
 <meta property="og:image" content="https://mangostudio.it/OG/mad.jpg">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MAD Museum — Trailer in Motion Design | Riccardo Marangon">
+<meta name="twitter:title" content="MAD Museum: Trailer in Motion Design | Riccardo Marangon">
 <meta name="twitter:description" content="Trailer in motion design per il MAD Museum (Museum of Arts and Design), tra arte, artigianato e design. Di Riccardo Marangon con Citron e Gatti.">
 <meta name="twitter:image" content="https://mangostudio.it/OG/mad.jpg">
 
@@ -37,7 +37,7 @@
       "@type": "CreativeWork",
       "@id": "https://mangostudio.it/Pagine%20progetto/mad.html#progetto",
       "name": "MAD Museum",
-      "headline": "MAD Museum — Trailer in Motion Design",
+      "headline": "MAD Museum: Trailer in Motion Design",
       "description": "Trailer in motion design per il MAD Museum (Museum of Arts and Design), tra arte, artigianato e design. Di Riccardo Marangon con Citron e Gatti.",
       "url": "https://mangostudio.it/Pagine%20progetto/mad.html",
       "image": "https://mangostudio.it/OG/mad.jpg",
@@ -48,11 +48,15 @@
         "@type": "Person",
         "@id": "https://mangostudio.it/#person",
         "name": "Riccardo Marangon"
-      }
+      },
+      "contributor": [
+        { "@type": "Person", "name": "Nicola Citron" },
+        { "@type": "Person", "name": "Nicholas Di Paolo" }
+      ]
     },
     {
       "@type": "VideoObject",
-      "name": "MAD Museum — Trailer in Motion Design",
+      "name": "MAD Museum: Trailer in Motion Design",
       "description": "Trailer in motion design per il MAD Museum (Museum of Arts and Design), tra arte, artigianato e design. Di Riccardo Marangon con Citron e Gatti.",
       "thumbnailUrl": "https://mangostudio.it/OG/poster-mad.jpg",
       "contentUrl": "https://mangostudio.it/MAD/Citron_Gatti_Marangon_Trailer.mp4",
@@ -462,7 +466,26 @@ body.menu-open .burger-line:nth-child(2) {
   max-width: 100%;
 }
 
+.project-credits {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 8px 40px;
+  margin-top: 8px;
+}
+.project-credits dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+}
+.project-credits dd {
+  font-size: 14px;
+  color: var(--text);
+}
+
 @media(max-width: 768px) {
+  .project-credits { grid-template-columns: 1fr 1fr; }
   .project-hero {
     grid-template-columns: 1fr;
     padding-top: 120px;
@@ -993,6 +1016,9 @@ body:not(.dark-mode) .card-overlay { background: rgba(17,17,16,0.5); }
   <div>
     <h1 class="project-title">MAD Museum</h1>
     <div class="project-meta">Motion Design · 2022</div>
+    <dl class="project-credits">
+      <div><dt>In collaborazione con</dt><dd>Nicola Citron</dd><dd>Nicholas Di Paolo</dd></div>
+    </dl>
   </div>
   <div class="project-description">
     <h2>Il progetto</h2>
